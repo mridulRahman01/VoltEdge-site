@@ -8,12 +8,8 @@ import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
 
 const NAV_LINKS = [
-  { label: 'Laptops', href: '/category' },
-  { label: 'PC & Server', href: '/category' },
-  { label: 'Gaming', href: '/category' },
-  { label: 'Monitors', href: '/category' },
-  { label: 'Phones', href: '/category' },
-  { label: 'Offers', href: '/category' },
+  { label: 'Home', href: '/' },
+  { label: 'Offer', href: '/category' },
 ];
 
 const MOBILE_CATEGORIES = [
@@ -95,15 +91,14 @@ export default function Header() {
     try {
       await signOut();
       setUserMenuOpen(false);
-    } catch {}
+    } catch { }
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-surface/95 backdrop-blur-md border-b border-border shadow-lg' : 'bg-surface border-b border-border'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-surface/95 backdrop-blur-md border-b border-border shadow-lg' : 'bg-surface border-b border-border'
+          }`}
       >
         <div className="max-w-[1400px] mx-auto px-3 sm:px-4 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
@@ -115,21 +110,21 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-6">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-elevated"
+                className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors rounded-xl hover:bg-elevated"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/pc-builder"
-              className="px-3 py-2 text-sm font-medium text-accent hover:text-accent transition-colors rounded-lg hover:bg-accent/10 flex items-center gap-1"
+              className="px-4 py-2 text-sm font-semibold text-accent hover:text-accent transition-colors rounded-xl bg-accent/10 hover:bg-accent/20 flex items-center gap-2 border border-accent/20"
             >
-              <Icon name="CpuIcon" size={14} />
+              <Icon name="CpuIcon" size={16} />
               PC Builder
             </Link>
           </nav>
@@ -255,19 +250,19 @@ export default function Header() {
                   {['ASUS ROG Strix G16', 'AMD Ryzen 9 7950X', 'RTX 4090', 'Samsung Galaxy S24', 'Corsair DDR5 RAM']
                     .filter(n => n.toLowerCase().includes(searchQuery.toLowerCase()))
                     .map((result) => (
-                    <Link key={result} href="/product-detail" onClick={() => setSearchOpen(false)} className="flex items-center gap-3 p-3 min-h-[48px] rounded-xl hover:bg-elevated transition-colors group touch-manipulation">
-                      <Icon name="PackageIcon" size={16} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                      <span className="text-foreground text-sm">{result}</span>
-                      <Icon name="ArrowRightIcon" size={14} className="ml-auto text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
-                  ))}
+                      <Link key={result} href="/product-detail" onClick={() => setSearchOpen(false)} className="flex items-center gap-3 p-3 min-h-[48px] rounded-xl hover:bg-elevated transition-colors group touch-manipulation">
+                        <Icon name="PackageIcon" size={16} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                        <span className="text-foreground text-sm">{result}</span>
+                        <Icon name="ArrowRightIcon" size={14} className="ml-auto text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                    ))}
                   {['ASUS ROG Strix G16', 'AMD Ryzen 9 7950X', 'RTX 4090', 'Samsung Galaxy S24', 'Corsair DDR5 RAM']
                     .filter(n => n.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
-                    <div className="text-center py-8">
-                      <Icon name="SearchIcon" size={32} className="text-muted-foreground mx-auto mb-3" />
-                      <p className="text-muted-foreground text-sm">No results for &quot;{searchQuery}&quot;</p>
-                    </div>
-                  )}
+                      <div className="text-center py-8">
+                        <Icon name="SearchIcon" size={32} className="text-muted-foreground mx-auto mb-3" />
+                        <p className="text-muted-foreground text-sm">No results for &quot;{searchQuery}&quot;</p>
+                      </div>
+                    )}
                 </div>
               ) : (
                 <div>
