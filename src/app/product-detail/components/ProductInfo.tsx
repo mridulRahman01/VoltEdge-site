@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import { formatPrice, formatEmi } from '@/lib/mockData';
+import { useToast } from '@/context/ToastContext';
 
 const PRODUCT = {
   name: 'ASUS ROG Strix G16 Gaming Laptop',
@@ -20,6 +21,7 @@ const PRODUCT = {
 };
 
 export default function ProductInfo() {
+  const { toast } = useToast();
   const [qty, setQty] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -27,6 +29,7 @@ export default function ProductInfo() {
 
   const handleAddToCart = () => {
     setAddedToCart(true);
+    toast.success(`Added ${qty}x "${PRODUCT.name}" to cart successfully! 🛒`);
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
@@ -114,16 +117,21 @@ export default function ProductInfo() {
 
         <button
           onClick={handleAddToCart}
-          className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 py-3.5 rounded-xl font-display font-semibold text-sm transition-all ${
+          className={`flex-1 min-w-[140px] h-12 flex items-center justify-center gap-2 px-4 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all leading-none ${
             addedToCart ? 'bg-accent/20 text-accent border border-accent/40' : 'bg-accent text-accent-foreground hover:glow-accent-sm'
           }`}
         >
           <Icon name={addedToCart ? 'CheckIcon' : 'ShoppingCartIcon'} size={18} />
-          {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
+          <span className="truncate">{addedToCart ? 'Added to Cart!' : 'Add to Cart'}</span>
         </button>
 
         <button
-          onClick={() => setWishlisted(!wishlisted)}
+          onClick={() => {
+            const next = !wishlisted;
+            setWishlisted(next);
+            if (next) toast.success(`Added "${PRODUCT.name}" to wishlist! ❤️`);
+            else toast.info(`Removed "${PRODUCT.name}" from wishlist.`);
+          }}
           className={`p-3.5 rounded-xl border transition-all ${
             wishlisted ? 'bg-danger/10 border-danger/30 text-danger' : 'bg-elevated border-border text-muted-foreground hover:text-danger hover:border-danger/30'
           }`}

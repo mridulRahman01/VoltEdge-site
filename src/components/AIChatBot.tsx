@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 
 type Language = 'EN' | 'BN';
@@ -54,6 +55,7 @@ const SUGGESTIONS: Record<Language, string[]> = {
 };
 
 export default function AIChatBot() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [lang, setLang] = useState<Language>('EN');
   const [input, setInput] = useState('');
@@ -129,6 +131,10 @@ export default function AIChatBot() {
       setIsTyping(false);
     }, 900);
   };
+
+  if (pathname === '/pc-builder') {
+    return null;
+  }
 
   return (
     <>

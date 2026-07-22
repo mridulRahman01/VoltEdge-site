@@ -80,11 +80,10 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: 'PC Builder', href: '/pc-builder' },
-                { label: 'Laptop Finder', href: '/category' },
-                { label: 'Compare Products', href: '/category' },
-                { label: 'Flash Offers', href: '/category' },
-                { label: 'EMI Calculator', href: '/emi-calculator' },
-                { label: 'Track Order', href: '/' },
+                { label: '0% EMI Calculator', href: '/emi-calculator' },
+                { label: 'Tech Trade-In', href: '/trade-in' },
+                { label: 'Track Order', href: '/track-order' },
+                { label: 'Warranty Check', href: '/warranty-check' },
               ]?.map((item) => (
                 <li key={item?.label}>
                   <Link href={item?.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{item?.label}</Link>

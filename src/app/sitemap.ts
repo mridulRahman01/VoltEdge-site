@@ -5,9 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: base, priority: 1.0, changeFrequency: 'daily' },
     { url: `${base}/category`, priority: 0.8, changeFrequency: 'daily' },
+    { url: `${base}/offers`, priority: 0.9, changeFrequency: 'daily' },
+    { url: `${base}/wishlist`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${base}/product-detail`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${base}/pc-builder`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${base}/emi-calculator`, priority: 0.8, changeFrequency: 'weekly' },
+    { url: `${base}/warranty-check`, priority: 0.8, changeFrequency: 'weekly' },
+    { url: `${base}/trade-in`, priority: 0.8, changeFrequency: 'weekly' },
+    { url: `${base}/track-order`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${base}/cart-checkout`, priority: 0.5, changeFrequency: 'monthly' },
     { url: `${base}/sign-up-login`, priority: 0.3, changeFrequency: 'monthly' },
   ];

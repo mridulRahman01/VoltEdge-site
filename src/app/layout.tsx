@@ -4,6 +4,7 @@ import { Space_Grotesk, DM_Sans } from 'next/font/google';
 import '../styles/tailwind.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ToastProvider } from '@/context/ToastContext';
 import AIChatBot from '@/components/AIChatBot';
 
 const spaceGrotesk = Space_Grotesk({
@@ -53,11 +54,13 @@ export default function RootLayout({
       <body className={dmSans.className}>
         <ThemeProvider>
           <AuthProvider>
-            {children}
-            <AIChatBot />
+            <ToastProvider>
+              {children}
+              <AIChatBot />
+            </ToastProvider>
           </AuthProvider>
         </ThemeProvider>
-</body>
+      </body>
     </html>
   );
 }

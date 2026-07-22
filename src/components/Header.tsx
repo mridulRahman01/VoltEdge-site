@@ -6,10 +6,11 @@ import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/context/ToastContext';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Offer', href: '/category' },
+  { label: 'Offer', href: '/offers' },
 ];
 
 const MOBILE_CATEGORIES = [
@@ -43,6 +44,7 @@ export default function Header() {
   const searchRef = useRef<HTMLInputElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, signOut, loading } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -91,6 +93,7 @@ export default function Header() {
     try {
       await signOut();
       setUserMenuOpen(false);
+      toast.info('Signed out successfully! 👋');
     } catch { }
   };
 
@@ -105,15 +108,22 @@ export default function Header() {
               Hotline: 16793 / 09612-345678
             </span>
             <span className="text-border">|</span>
-            <span className="flex items-center gap-1 hover:text-foreground transition-colors cursor-pointer">
-              <Icon name="MapPinIcon" size={13} />
-              12 Store Locations across Bangladesh
-            </span>
+            <Link href="/warranty-check" className="flex items-center gap-1 hover:text-foreground transition-colors">
+              <Icon name="ShieldCheckIcon" size={13} className="text-accent" />
+              Warranty Check
+            </Link>
+            <span className="text-border">|</span>
+            <Link href="/trade-in" className="flex items-center gap-1 hover:text-foreground transition-colors">
+              <Icon name="RefreshCwIcon" size={13} className="text-accent" />
+              Trade-In
+            </Link>
+            <span className="text-border">|</span>
+            <Link href="/track-order" className="flex items-center gap-1 hover:text-foreground transition-colors">
+              <Icon name="TruckIcon" size={13} className="text-accent" />
+              Track Order
+            </Link>
           </div>
           <div className="flex items-center gap-4">
-            <span className="bg-accent/10 border border-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">
-              🔥 Flash Sale Live
-            </span>
             <Link href="/emi-calculator" className="hover:text-accent font-semibold transition-colors flex items-center gap-1">
               <Icon name="CalculatorIcon" size={13} className="text-accent" />
               0% EMI Available on 30+ Banks
@@ -271,9 +281,16 @@ export default function Header() {
               )}
             </div>
 
-            <button className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors relative touch-manipulation" aria-label="Wishlist">
+            <Link
+              href="/wishlist"
+              className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-danger hover:bg-elevated transition-colors touch-manipulation"
+              aria-label="Wishlist"
+            >
               <Icon name="HeartIcon" size={20} />
-            </button>
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-danger text-white text-xs font-bold rounded-full flex items-center justify-center font-display shadow-sm">
+                3
+              </span>
+            </Link>
 
             <Link href="/cart-checkout" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors touch-manipulation" aria-label="Cart">
               <Icon name="ShoppingCartIcon" size={20} />

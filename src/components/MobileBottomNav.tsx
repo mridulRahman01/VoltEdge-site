@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: 'Home', icon: 'HomeIcon', href: '/' },
   { label: 'Categories', icon: 'GridIcon', href: '/category' },
   { label: 'PC Builder', icon: 'CpuIcon', href: '/pc-builder' },
-  { label: 'Offers', icon: 'TagIcon', href: '/category' },
+  { label: 'Offers', icon: 'TagIcon', href: '/offers' },
   { label: 'Account', icon: 'UserIcon', href: '/sign-up-login' },
 ];
 

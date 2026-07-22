@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { Product, formatPrice, formatEmi } from '@/lib/mockData';
+import { useToast } from '@/context/ToastContext';
 
 interface ProductCardProps {
   product: Product;
@@ -15,19 +16,34 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, className = '', priority = false }: ProductCardProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const [wishlisted, setWishlisted] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const next = !wishlisted;
+    setWishlisted(next);
+    if (next) {
+      toast.success(`Added "${product.name}" to your wishlist! ❤️`);
+    } else {
+      toast.info(`Removed "${product.name}" from wishlist.`);
+    }
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setAddedToCart(true);
+    toast.success(`Added "${product.name}" to cart successfully! 🛒`);
     setTimeout(() => setAddedToCart(false), 1500);
   };
 
   const handleBuyNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    toast.info(`Proceeding to checkout with "${product.name}" 🚀`);
     router.push('/cart-checkout');
   };
 
@@ -60,7 +76,7 @@ export default function ProductCard({ product, className = '', priority = false 
       {/* Action buttons (Wishlist & Quick View) */}
       <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setWishlisted(!wishlisted); }}
+          onClick={handleWishlist}
           className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors shadow-md"
           aria-label="Add to wishlist"
         >
@@ -124,21 +140,21 @@ export default function ProductCard({ product, className = '', priority = false 
         )}
 
         {/* Action Buttons: Add to Cart & Buy Now */}
-        <div className="grid grid-cols-2 gap-1.5 pt-1">
+        <div className="grid grid-cols-2 gap-1.5 pt-2 items-center">
           <button
             onClick={handleAddToCart}
-            className={`py-2 min-h-[40px] rounded-xl text-xs font-semibold font-display transition-all ${
+            className={`w-full h-9 rounded-xl text-[10px] sm:text-xs font-semibold font-display transition-all flex items-center justify-center text-center px-1 leading-none ${
               addedToCart
                 ? 'bg-accent/20 text-accent border border-accent/40' :'bg-elevated border border-border text-foreground hover:bg-elevated/80'
             }`}
           >
-            {addedToCart ? '✓ Added' : 'Add to Cart'}
+            <span className="truncate">{addedToCart ? '✓ Added' : 'Add to Cart'}</span>
           </button>
           <button
             onClick={handleBuyNow}
-            className="py-2 min-h-[40px] rounded-xl text-xs font-semibold font-display bg-accent text-accent-foreground hover:glow-accent-sm flex items-center justify-center"
+            className="w-full h-9 rounded-xl text-[10px] sm:text-xs font-semibold font-display bg-accent text-accent-foreground hover:glow-accent-sm flex items-center justify-center text-center px-1 leading-none"
           >
-            Buy Now
+            <span className="truncate">Buy Now</span>
           </button>
         </div>
       </div>

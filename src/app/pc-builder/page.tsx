@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import PCBuilderClient from '@/app/pc-builder/components/PCBuilderClient';
+import LumiChatBot from '@/components/LumiChatBot';
 import { PCBuilderSkeleton } from '@/components/ui/Skeleton';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
@@ -34,7 +35,7 @@ export default function PCBuilderPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">PC Builder</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">Build your dream PC with real-time compatibility checks</p>
+                <p className="text-sm text-muted-foreground mt-0.5">Build your dream PC with real-time compatibility checks & Lumi AI Guide</p>
               </div>
               <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20">
                 <span className="pulse-dot" />
@@ -45,6 +46,7 @@ export default function PCBuilderPage() {
         </div>
         {loading ? <PCBuilderSkeleton /> : <PCBuilderClient />}
       </main>
+      <LumiChatBot />
       <Footer />
       <MobileBottomNav />
     </div>
