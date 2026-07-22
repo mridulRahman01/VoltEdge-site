@@ -322,13 +322,21 @@ export default function PCBuilderClient() {
               <Icon name="ShoppingCartIcon" size={16} />
               Add Build to Cart
             </button>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={handleSave}
                 className="py-2.5 rounded-xl font-display font-semibold text-xs bg-elevated border border-border text-foreground hover:border-accent/40 transition-all flex items-center justify-center gap-1.5"
               >
                 <Icon name="SaveIcon" size={14} className={savedMsg ? 'text-accent' : ''} />
-                {savedMsg ? 'Saved!' : 'Save Build'}
+                {savedMsg ? 'Saved!' : 'Save'}
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="py-2.5 rounded-xl font-display font-semibold text-xs bg-elevated border border-border text-foreground hover:border-accent/40 transition-all flex items-center justify-center gap-1.5"
+                title="Print Official Quotation"
+              >
+                <Icon name="PrinterIcon" size={14} />
+                Quote
               </button>
               <button className="py-2.5 rounded-xl font-display font-semibold text-xs bg-elevated border border-border text-foreground hover:border-accent/40 transition-all flex items-center justify-center gap-1.5">
                 <Icon name="Share2Icon" size={14} />

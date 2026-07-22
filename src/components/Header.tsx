@@ -96,9 +96,36 @@ export default function Header() {
 
   return (
     <>
+      {/* Top Utility Announcement & Support Bar */}
+      <div className="bg-elevated/80 border-b border-border text-xs py-1.5 px-4 hidden md:block text-muted-foreground font-medium z-50 relative">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-accent font-semibold">
+              <Icon name="PhoneIcon" size={13} />
+              Hotline: 16793 / 09612-345678
+            </span>
+            <span className="text-border">|</span>
+            <span className="flex items-center gap-1 hover:text-foreground transition-colors cursor-pointer">
+              <Icon name="MapPinIcon" size={13} />
+              12 Store Locations across Bangladesh
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="bg-accent/10 border border-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">
+              🔥 Flash Sale Live
+            </span>
+            <Link href="/emi-calculator" className="hover:text-accent font-semibold transition-colors flex items-center gap-1">
+              <Icon name="CalculatorIcon" size={13} className="text-accent" />
+              0% EMI Available on 30+ Banks
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-surface/95 backdrop-blur-md border-b border-border shadow-lg' : 'bg-surface border-b border-border'
-          }`}
+        className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? 'bg-surface/95 backdrop-blur-md border-b border-border shadow-lg' : 'bg-surface border-b border-border'
+        }`}
       >
         <div className="max-w-[1400px] mx-auto px-3 sm:px-4 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
@@ -110,7 +137,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6 relative">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -120,6 +147,53 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Mega Menu Dropdown */}
+            <div className="relative group">
+              <button
+                className="px-4 py-2 text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors rounded-xl group-hover:bg-elevated flex items-center gap-1"
+              >
+                Categories
+                <Icon name="ChevronDownIcon" size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+              </button>
+
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[680px] bg-surface/98 backdrop-blur-xl border border-border rounded-2xl shadow-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 grid grid-cols-3 gap-6">
+                <div>
+                  <h4 className="text-xs font-bold text-accent uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Icon name="LaptopIcon" size={14} /> Laptops & Mac
+                  </h4>
+                  <ul className="space-y-2 text-xs text-muted-foreground">
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Gaming Laptops</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Ultrabooks & Business</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Apple MacBook Pro / Air</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Budget Laptops</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-accent uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Icon name="CpuIcon" size={14} /> Components
+                  </h4>
+                  <ul className="space-y-2 text-xs text-muted-foreground">
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Processors (Intel & AMD)</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Graphics Cards (RTX 40 Series)</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Motherboards & RAM</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">SSDs & Hard Drives</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-accent uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Icon name="MonitorIcon" size={14} /> Gaming & Accessories
+                  </h4>
+                  <ul className="space-y-2 text-xs text-muted-foreground">
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">144Hz - 360Hz Monitors</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Mechanical Keyboards & Mice</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Gaming Chairs & Desks</Link></li>
+                    <li><Link href="/category" className="hover:text-foreground transition-colors">Power Supplies (PSU)</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <Link
               href="/pc-builder"
               className="px-4 py-2 text-sm font-semibold text-accent hover:text-accent transition-colors rounded-xl bg-accent/10 hover:bg-accent/20 flex items-center gap-2 border border-accent/20"

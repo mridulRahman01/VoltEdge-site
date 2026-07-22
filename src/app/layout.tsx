@@ -4,6 +4,7 @@ import { Space_Grotesk, DM_Sans } from 'next/font/google';
 import '../styles/tailwind.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import AIChatBot from '@/components/AIChatBot';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -53,6 +54,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
+            <AIChatBot />
           </AuthProvider>
         </ThemeProvider>
 </body>

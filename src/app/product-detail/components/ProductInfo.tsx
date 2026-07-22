@@ -136,19 +136,25 @@ export default function ProductInfo() {
           <Icon name="GitCompareIcon" size={20} />
         </button>
       </div>
-      {/* Warranty + SKU */}
-      <div className="space-y-2 text-sm">
+      {/* Warranty + SKU + Stock Locations */}
+      <div className="space-y-2.5 text-sm p-4 bg-elevated/40 border border-border rounded-xl">
         <div className="flex items-center gap-2 text-muted-foreground">
           <Icon name="ShieldCheckIcon" size={16} className="text-accent shrink-0" />
           <span>{PRODUCT?.warranty}</span>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground">
-          <Icon name="TagIcon" size={16} className="shrink-0" />
-          <span>SKU: {PRODUCT?.sku}</span>
+          <Icon name="MapPinIcon" size={16} className="text-accent shrink-0" />
+          <span className="font-medium text-foreground">In-Store Stock Status:</span>
+          <select className="bg-surface border border-border text-foreground text-xs rounded-lg px-2 py-1 outline-none">
+            <option>Dhaka - IDB Bhaban Branch (In Stock)</option>
+            <option>Dhaka - Multiplan Center (In Stock)</option>
+            <option>Dhaka - Uttara Branch (Low Stock)</option>
+            <option>Chittagong - Agrabad Branch (In Stock)</option>
+          </select>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground">
           <Icon name="TruckIcon" size={16} className="text-accent shrink-0" />
-          <span>Delivery within 1–3 business days across Bangladesh</span>
+          <span>Fast Home Delivery within 24-48 Hours across Bangladesh</span>
         </div>
       </div>
     </div>

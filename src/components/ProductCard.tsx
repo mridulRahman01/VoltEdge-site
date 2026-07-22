@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { Product, formatPrice, formatEmi } from '@/lib/mockData';
@@ -13,6 +14,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, className = '', priority = false }: ProductCardProps) {
+  const router = useRouter();
   const [wishlisted, setWishlisted] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
 
@@ -23,10 +25,20 @@ export default function ProductCard({ product, className = '', priority = false 
     setTimeout(() => setAddedToCart(false), 1500);
   };
 
+  const handleBuyNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    router.push('/cart-checkout');
+  };
+
   return (
     <Link href="/product-detail" className={`group block bg-card border border-border rounded-2xl overflow-hidden card-hover relative ${className}`}>
       {/* Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+        <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          In Stock
+        </span>
         {product.discount && (
           <span className="px-2 py-0.5 rounded-full bg-danger text-white text-xs font-bold font-display">
             -{product.discount}%
@@ -43,21 +55,25 @@ export default function ProductCard({ product, className = '', priority = false 
             Low Stock
           </span>
         )}
-        {product.isNew && (
-          <span className="px-2 py-0.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
-            New
-          </span>
-        )}
       </div>
 
-      {/* Wishlist — always visible on mobile for touch, hover on desktop */}
-      <button
-        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setWishlisted(!wishlisted); }}
-        className="absolute top-3 right-3 z-10 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg bg-elevated/80 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors sm:opacity-0 sm:group-hover:opacity-100 opacity-100"
-        aria-label="Add to wishlist"
-      >
-        <Icon name={wishlisted ? 'HeartIcon' : 'HeartIcon'} size={16} className={wishlisted ? 'text-danger' : ''} />
-      </button>
+      {/* Action buttons (Wishlist & Quick View) */}
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setWishlisted(!wishlisted); }}
+          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors shadow-md"
+          aria-label="Add to wishlist"
+        >
+          <Icon name="HeartIcon" size={16} className={wishlisted ? 'text-danger fill-danger' : ''} />
+        </button>
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-accent transition-colors shadow-md"
+          title="Quick View"
+        >
+          <Icon name="EyeIcon" size={16} />
+        </button>
+      </div>
 
       {/* Image */}
       <div className="relative bg-elevated aspect-[4/3] overflow-hidden">
@@ -73,7 +89,10 @@ export default function ProductCard({ product, className = '', priority = false 
 
       {/* Content */}
       <div className="p-3 sm:p-4">
-        <p className="text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wide">{product.brand}</p>
+        <div className="flex items-center justify-between gap-1 mb-1">
+          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{product.brand}</p>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted/80 text-muted-foreground font-medium">3 Yrs Warranty</span>
+        </div>
         <h3 className="font-display font-semibold text-sm text-foreground line-clamp-2 mb-2 leading-snug">{product.name}</h3>
 
         {/* Spec chips */}
@@ -104,19 +123,22 @@ export default function ProductCard({ product, className = '', priority = false 
           <p className="text-xs text-muted-foreground mb-3">{formatEmi(product.price)}</p>
         )}
 
-        {/* Quick actions — always visible on mobile, hover on desktop */}
-        <div className="flex gap-2 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity duration-200">
+        {/* Action Buttons: Add to Cart & Buy Now */}
+        <div className="grid grid-cols-2 gap-1.5 pt-1">
           <button
             onClick={handleAddToCart}
-            className={`flex-1 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold font-display transition-all ${
+            className={`py-2 min-h-[40px] rounded-xl text-xs font-semibold font-display transition-all ${
               addedToCart
-                ? 'bg-accent/20 text-accent border border-accent/40' :'bg-accent text-accent-foreground hover:glow-accent-sm'
+                ? 'bg-accent/20 text-accent border border-accent/40' :'bg-elevated border border-border text-foreground hover:bg-elevated/80'
             }`}
           >
             {addedToCart ? '✓ Added' : 'Add to Cart'}
           </button>
-          <button className="p-2.5 min-w-[44px] min-h-[44px] rounded-xl bg-elevated border border-border text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center" aria-label="Compare">
-            <Icon name="GitCompareIcon" size={14} />
+          <button
+            onClick={handleBuyNow}
+            className="py-2 min-h-[40px] rounded-xl text-xs font-semibold font-display bg-accent text-accent-foreground hover:glow-accent-sm flex items-center justify-center"
+          >
+            Buy Now
           </button>
         </div>
       </div>

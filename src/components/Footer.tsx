@@ -83,7 +83,7 @@ export default function Footer() {
                 { label: 'Laptop Finder', href: '/category' },
                 { label: 'Compare Products', href: '/category' },
                 { label: 'Flash Offers', href: '/category' },
-                { label: 'EMI Calculator', href: '/' },
+                { label: 'EMI Calculator', href: '/emi-calculator' },
                 { label: 'Track Order', href: '/' },
               ]?.map((item) => (
                 <li key={item?.label}>

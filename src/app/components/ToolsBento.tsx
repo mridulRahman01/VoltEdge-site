@@ -65,16 +65,19 @@ export default function ToolsBento() {
           </Link>
 
           {/* EMI Calculator */}
-          <div className="relative bg-surface border border-border rounded-2xl p-6 overflow-hidden group hover:border-accent/40 hover:shadow-[0_0_24px_var(--accent-dim)] transition-all flex items-center gap-5 min-h-[130px] cursor-pointer">
+          <Link
+            href="/emi-calculator"
+            className="relative bg-surface border border-border rounded-2xl p-6 overflow-hidden group hover:border-accent/40 hover:shadow-[0_0_24px_var(--accent-dim)] transition-all flex items-center gap-5 min-h-[130px] cursor-pointer"
+          >
             <div className="w-14 h-14 rounded-xl bg-elevated border border-border flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors">
               <Icon name="CalculatorIcon" size={28} className="text-accent" />
             </div>
             <div>
               <h3 className="font-display font-bold text-lg text-foreground mb-1">EMI Calculator</h3>
-              <p className="text-sm text-muted-foreground">0% EMI · 3 to 24 months · All banks</p>
+              <p className="text-sm text-muted-foreground">0% EMI · 3 to 36 months · All banks</p>
             </div>
             <Icon name="ChevronRightIcon" size={20} className="ml-auto text-muted-foreground group-hover:text-accent transition-colors shrink-0" />
-          </div>
+          </Link>
         </div>
       </div>
     </section>

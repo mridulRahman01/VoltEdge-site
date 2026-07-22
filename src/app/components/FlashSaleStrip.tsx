@@ -97,11 +97,23 @@ export default function FlashSaleStrip() {
           </div>
         ) : (
           <div className="flex gap-3 sm:gap-4 overflow-x-auto no-scrollbar pb-2 snap-x-mandatory -mx-4 px-4">
-            {FLASH_SALE_PRODUCTS.map((product) => (
-              <div key={product.id} className="snap-start-item w-[200px] sm:w-[240px] shrink-0">
-                <ProductCard product={product} />
-              </div>
-            ))}
+            {FLASH_SALE_PRODUCTS.map((product, idx) => {
+              const claimed = [78, 92, 64, 85][idx % 4];
+              return (
+                <div key={product.id} className="snap-start-item w-[200px] sm:w-[240px] shrink-0 flex flex-col">
+                  <ProductCard product={product} />
+                  <div className="mt-2 px-1">
+                    <div className="flex items-center justify-between text-[10px] text-muted-foreground font-medium mb-1">
+                      <span>Sold: {claimed}%</span>
+                      <span className="text-accent font-bold">Limited Stock</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-elevated rounded-full overflow-hidden border border-border">
+                      <div className="h-full bg-accent rounded-full" style={{ width: `${claimed}%` }} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

@@ -5,6 +5,7 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import HeroSection from '@/app/components/HeroSection';
 import CategoryRail from '@/app/components/CategoryRail';
 import FlashSaleStrip from '@/app/components/FlashSaleStrip';
+import BrandGrid from '@/app/components/BrandGrid';
 import FeaturedGrid from '@/app/components/FeaturedGrid';
 import ToolsBento from '@/app/components/ToolsBento';
 import BestSellersSection from '@/app/components/BestSellersSection';
@@ -18,6 +19,7 @@ export default function HomePage() {
         <HeroSection />
         <CategoryRail />
         <FlashSaleStrip />
+        <BrandGrid />
         <FeaturedGrid />
         <ToolsBento />
         <BestSellersSection />
