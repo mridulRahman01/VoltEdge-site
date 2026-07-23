@@ -1,91 +1,113 @@
-# Next.js
+# ⚡ VoltEdge — Premium Tech Store Bangladesh
 
-A modern Next.js 15 application built with TypeScript and Tailwind CSS.
+> **Live Application**: [https://volt-edge-site.vercel.app/](https://volt-edge-site.vercel.app/)
 
-## 🚀 Features
+VoltEdge is Bangladesh's premier dark-themed tech e-commerce platform and custom PC building ecosystem. Designed with high-performance aesthetics, interactive tools, and real-time backend architecture.
 
-- **Next.js 15** - Latest version with improved performance and features
-- **React 19** - Latest React version with enhanced capabilities
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+---
 
-## 🛠️ Installation
+## 🌐 Live Demo & Endpoints
 
-1. Install dependencies:
-  ```bash
-  npm install
-  # or
-  yarn install
-  ```
+- **Live Web App**: [https://volt-edge-site.vercel.app/](https://volt-edge-site.vercel.app/)
+- **Local Frontend**: `http://localhost:4028`
+- **Local API Backend**: `http://localhost:5000/api/health`
 
-2. Start the development server:
-  ```bash
-  npm run dev
-  # or
-  yarn dev
-  ```
-3. Open [http://localhost:4028](http://localhost:4028) with your browser to see the result.
+---
 
-## 📁 Project Structure
+## ✨ Key Features
+
+- **📱 Image-Led Mobile Hero & Composed Banner**: Composed image-first mobile hero card (`< 1024px`) with swipeable CSS scroll-snap slides, single-row spec chips, and surfaced interactive tool cards.
+- **💻 Unmodified Pixel-Identical Desktop Grid**: 2-column campaign hero banner with interactive bento budget estimator and 0% EMI preview widgets for desktop (`≥ 1024px`).
+- **🤖 Lumi AI Sales Consultant**: Floating interactive AI shopping assistant providing real-time PC component recommendations, budget advice, and product inquiries.
+- **🖥️ Custom PC Builder**: Live compatibility engine checking CPU socket fit (AM5, LGA1700, LGA1851), memory generation (DDR4/DDR5), form factor clearance, and estimated PSU wattage headroom (+25% safety margin).
+- **🛒 Dynamic Cart & Wishlist System**: Real-time Header badge counters, interactive glassmorphism confirmation modals for clearing items, 1-click cross icon removal, and `localStorage` persistence.
+- **💳 0% EMI Calculator**: Monthly installment preview supporting 30+ major Bangladeshi banks across 3 to 36-month tenures.
+- **🛡️ Warranty Check & 🔄 Trade-In Tools**: Official serial number lookup for warranty claims and automated hardware valuation estimator.
+- **🚀 Dynamic Product Routing**: Dynamic routes at `/product/[slug]` with automated SEO metadata generation.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Space Grotesk & DM Sans typography.
+- **Backend API**: Express.js (Node.js API in `/server`), Zod schema validation.
+- **Database & Auth**: Supabase PostgreSQL, Row-Level Security (RLS) policies, automatic profile triggers.
+- **Deployment**: Vercel (Frontend) & Render/Node (Express API).
+
+---
+
+## 📁 Project Architecture
 
 ```
-nextjs/
-├── public/             # Static assets
+voltedge/
+├── public/                 # Static images, assets, and branding
+├── server/                 # Express.js backend API
+│   ├── src/
+│   │   ├── routes/         # API endpoints (products, cart, orders, pcbuilder, warranty, tradein, auth)
+│   │   ├── middleware/     # Zod validator & error handler
+│   │   └── lib/            # Supabase service client
+│   ├── package.json
+│   └── tsconfig.json
+├── shared/                 # Shared modules (compatibility engine)
+│   └── compatibility.ts
 ├── src/
-│   ├── app/            # App router components
-│   │   ├── layout.tsx  # Root layout component
-│   │   └── page.tsx    # Main page component
-│   ├── components/     # Reusable UI components
-│   ├── styles/         # Global styles and Tailwind configuration
-├── next.config.mjs     # Next.js configuration
-├── package.json        # Project dependencies and scripts
-├── postcss.config.js   # PostCSS configuration
-└── tailwind.config.js  # Tailwind CSS configuration
-
+│   ├── app/                # Next.js App Router pages & routes
+│   │   ├── components/     # Homepage sections & mobile/desktop hero components
+│   │   ├── product/[slug]/ # Dynamic product detail pages
+│   │   ├── pc-builder/     # Custom PC builder page
+│   │   ├── cart-checkout/  # Shopping cart & checkout flow
+│   │   └── wishlist/       # Saved wishlist page
+│   ├── components/         # Reusable UI components (Header, Footer, ProductCard, AI Chat)
+│   ├── contexts/           # Cart, Wishlist, Auth, and Theme context providers
+│   ├── lib/                # API client (`api.ts`), mock data, Supabase client
+│   └── styles/             # Tailwind & design token CSS
+├── supabase/
+│   └── migrations/         # Production SQL schema & RLS policies
+├── next.config.mjs
+└── package.json
 ```
 
-## 🧩 Page Editing
+---
 
-You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started Locally
 
-## 🎨 Styling
+### 1. Prerequisites
+- Node.js 18+ and `npm`
 
-This project uses Tailwind CSS for styling with the following features:
-- Utility-first approach for rapid development
-- Custom theme configuration
-- Responsive design utilities
-- PostCSS and Autoprefixer integration
+### 2. Installation
+Clone the repository and install dependencies for both frontend and backend:
 
-## 📦 Available Scripts
+```bash
+# Install frontend dependencies
+npm install
 
-- `npm run dev` - Start development server on port 4028
-- `npm run build` - Build the application for production
-- `npm run start` - Start the development server
-- `npm run serve` - Start the production server
-- `npm run lint` - Run ESLint to check code quality
-- `npm run lint:fix` - Fix ESLint issues automatically
-- `npm run format` - Format code with Prettier
+# Install server dependencies
+cd server
+npm install
+cd ..
+```
 
-## 📱 Deployment
+### 3. Running Development Servers
 
-Build the application for production:
+Start the Next.js frontend (Port `4028`):
+```bash
+npm run dev
+```
 
-  ```bash
-  npm run build
-  ```
+In a second terminal, start the Express backend API (Port `5000`):
+```bash
+cd server
+npm run dev
+```
 
-## 📚 Learn More
+Open [http://localhost:4028](http://localhost:4028) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial
+## 📦 Utility Scripts
 
-You can check out the [Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## 🙏 Acknowledgments
-
-- Built with [Rocket.new](https://rocket.new)
-- Powered by Next.js and React
-- Styled with Tailwind CSS
-
-Built with ❤️ on Rocket.new
+- `npm run dev` — Start Next.js development server on port `4028`
+- `npm run type-check` — Run TypeScript compiler type-checking (`tsc --noEmit`)
+- `npm run lint` — Run ESLint code quality checks
+- `npm run format` — Format all code using Prettier
+- `npm run build` — Create production build for Next.js
