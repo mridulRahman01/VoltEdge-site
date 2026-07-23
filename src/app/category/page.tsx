@@ -44,7 +44,10 @@ export default function CategoryPage() {
             <div className="border-b border-border">
               <div className="max-w-[1400px] mx-auto px-4 py-5">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+                  <Link
+                    href="/"
+                    className="hover:text-foreground transition-colors flex items-center gap-1"
+                  >
                     <Icon name="HomeIcon" size={14} />
                     Home
                   </Link>
@@ -52,7 +55,9 @@ export default function CategoryPage() {
                   <span className="text-foreground font-medium">Laptops</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">Laptops</h1>
+                  <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">
+                    Laptops
+                  </h1>
                   <span className="text-sm text-muted-foreground">128 products</span>
                 </div>
               </div>

@@ -33,14 +33,21 @@ export default function ProductDetailPage() {
             <div className="border-b border-border">
               <div className="max-w-[1400px] mx-auto px-4 py-3 sm:py-4">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
-                  <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+                  <Link
+                    href="/"
+                    className="hover:text-foreground transition-colors flex items-center gap-1"
+                  >
                     <Icon name="HomeIcon" size={14} />
                     Home
                   </Link>
                   <Icon name="ChevronRightIcon" size={14} />
-                  <Link href="/category" className="hover:text-foreground transition-colors">Laptops</Link>
+                  <Link href="/category" className="hover:text-foreground transition-colors">
+                    Laptops
+                  </Link>
                   <Icon name="ChevronRightIcon" size={14} />
-                  <span className="text-foreground font-medium line-clamp-1">ASUS ROG Strix G16 Gaming Laptop</span>
+                  <span className="text-foreground font-medium line-clamp-1">
+                    ASUS ROG Strix G16 Gaming Laptop
+                  </span>
                 </div>
               </div>
             </div>

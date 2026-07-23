@@ -33,7 +33,7 @@ export default function WishlistPage() {
     }
   };
 
-  const handleAddToCart = (item: typeof PRODUCTS[0]) => {
+  const handleAddToCart = (item: (typeof PRODUCTS)[0]) => {
     toast.success(`Moved "${item.name}" to cart successfully! 🛒`);
   };
 
@@ -43,7 +43,9 @@ export default function WishlistPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">My Wishlist</span>
         </div>
@@ -55,7 +57,9 @@ export default function WishlistPage() {
               <Icon name="HeartIcon" size={22} />
             </div>
             <div>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">My Saved Wishlist</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                My Saved Wishlist
+              </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 {wishlist.length} saved item{wishlist.length !== 1 ? 's' : ''} in your wishlist
               </p>
@@ -154,9 +158,12 @@ export default function WishlistPage() {
             <div className="w-16 h-16 rounded-full bg-danger/10 text-danger flex items-center justify-center mx-auto">
               <Icon name="HeartIcon" size={32} />
             </div>
-            <h3 className="font-display font-bold text-2xl text-foreground">Your Wishlist is Empty</h3>
+            <h3 className="font-display font-bold text-2xl text-foreground">
+              Your Wishlist is Empty
+            </h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              You haven&apos;t saved any tech items to your wishlist yet. Explore our catalog and click the heart icon on any product to save it for later!
+              You haven&apos;t saved any tech items to your wishlist yet. Explore our catalog and
+              click the heart icon on any product to save it for later!
             </p>
             <Link
               href="/category"

@@ -10,13 +10,43 @@ import { formatPrice } from '@/lib/mockData';
 
 const BANKS = [
   { name: 'BRAC Bank', card: 'Credit Card', maxMonths: 36, zeroEmi: true, fee: '0%' },
-  { name: 'City Bank (AMEX)', card: 'Amex & Visa/Mastercard', maxMonths: 36, zeroEmi: true, fee: '0%' },
-  { name: 'Eastern Bank (EBL)', card: 'Visa / Mastercard', maxMonths: 24, zeroEmi: true, fee: '0%' },
-  { name: 'Dutch-Bangla Bank (DBBL)', card: 'Nexus & Credit Card', maxMonths: 24, zeroEmi: true, fee: '0%' },
-  { name: 'Standard Chartered', card: 'Visa / Mastercard', maxMonths: 36, zeroEmi: true, fee: '0%' },
+  {
+    name: 'City Bank (AMEX)',
+    card: 'Amex & Visa/Mastercard',
+    maxMonths: 36,
+    zeroEmi: true,
+    fee: '0%',
+  },
+  {
+    name: 'Eastern Bank (EBL)',
+    card: 'Visa / Mastercard',
+    maxMonths: 24,
+    zeroEmi: true,
+    fee: '0%',
+  },
+  {
+    name: 'Dutch-Bangla Bank (DBBL)',
+    card: 'Nexus & Credit Card',
+    maxMonths: 24,
+    zeroEmi: true,
+    fee: '0%',
+  },
+  {
+    name: 'Standard Chartered',
+    card: 'Visa / Mastercard',
+    maxMonths: 36,
+    zeroEmi: true,
+    fee: '0%',
+  },
   { name: 'Mutual Trust Bank (MTB)', card: 'Credit Card', maxMonths: 24, zeroEmi: true, fee: '0%' },
   { name: 'Prime Bank', card: 'Credit Card', maxMonths: 24, zeroEmi: true, fee: '0%' },
-  { name: 'United Commercial Bank (UCB)', card: 'Credit Card', maxMonths: 24, zeroEmi: true, fee: '0%' },
+  {
+    name: 'United Commercial Bank (UCB)',
+    card: 'Credit Card',
+    maxMonths: 24,
+    zeroEmi: true,
+    fee: '0%',
+  },
   { name: 'Dhaka Bank', card: 'Credit Card', maxMonths: 18, zeroEmi: true, fee: '0%' },
   { name: 'HSBC Bangladesh', card: 'Visa / Mastercard', maxMonths: 24, zeroEmi: true, fee: '0%' },
   { name: 'Southeast Bank', card: 'Credit Card', maxMonths: 12, zeroEmi: true, fee: '0%' },
@@ -53,7 +83,9 @@ export default function EmiCalculatorPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">0% EMI Calculator</span>
         </div>
@@ -65,7 +97,9 @@ export default function EmiCalculatorPage() {
               <Icon name="CalculatorIcon" size={22} />
             </div>
             <div>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">0% EMI Calculator</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                0% EMI Calculator
+              </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Calculate monthly installment plans across 30+ leading Bangladeshi banks
               </p>
@@ -75,7 +109,9 @@ export default function EmiCalculatorPage() {
 
         {/* Quick Presets */}
         <div className="mb-8">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Quick Presets</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+            Quick Presets
+          </p>
           <div className="flex flex-wrap gap-2">
             {PRESETS.map((preset) => (
               <button
@@ -100,7 +136,9 @@ export default function EmiCalculatorPage() {
             {/* Purchase Amount Slider */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="font-display font-semibold text-sm text-foreground">Purchase Amount (BDT)</label>
+                <label className="font-display font-semibold text-sm text-foreground">
+                  Purchase Amount (BDT)
+                </label>
                 <div className="flex items-center gap-1 bg-elevated border border-border rounded-xl px-3 py-1.5">
                   <span className="text-xs text-muted-foreground font-bold">৳</span>
                   <input
@@ -144,8 +182,8 @@ export default function EmiCalculatorPage() {
                         tenure === m
                           ? 'bg-accent text-accent-foreground shadow-md'
                           : isAvailable
-                          ? 'bg-elevated border border-border text-foreground hover:border-accent/40'
-                          : 'bg-muted/30 text-muted-foreground border border-border/40 cursor-not-allowed opacity-50'
+                            ? 'bg-elevated border border-border text-foreground hover:border-accent/40'
+                            : 'bg-muted/30 text-muted-foreground border border-border/40 cursor-not-allowed opacity-50'
                       }`}
                     >
                       {m} Months
@@ -159,8 +197,12 @@ export default function EmiCalculatorPage() {
             <div className="p-4 bg-elevated/50 border border-border rounded-xl space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-display font-semibold text-sm text-foreground">0% Interest Scheme</h4>
-                  <p className="text-xs text-muted-foreground">Standard zero interest EMI on selected credit cards</p>
+                  <h4 className="font-display font-semibold text-sm text-foreground">
+                    0% Interest Scheme
+                  </h4>
+                  <p className="text-xs text-muted-foreground">
+                    Standard zero interest EMI on selected credit cards
+                  </p>
                 </div>
                 <button
                   onClick={() => setIsZeroInterest(!isZeroInterest)}
@@ -178,7 +220,9 @@ export default function EmiCalculatorPage() {
 
               {!isZeroInterest && (
                 <div className="pt-2 border-t border-border flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground font-medium">Bank Interest Rate (% p.a.):</span>
+                  <span className="text-xs text-muted-foreground font-medium">
+                    Bank Interest Rate (% p.a.):
+                  </span>
                   <input
                     type="number"
                     min={1}
@@ -211,7 +255,9 @@ export default function EmiCalculatorPage() {
                     }`}
                   >
                     <span className="font-display font-bold text-xs text-foreground">{b.name}</span>
-                    <span className="text-[10px] text-muted-foreground mt-1">Up to {b.maxMonths} Mo</span>
+                    <span className="text-[10px] text-muted-foreground mt-1">
+                      Up to {b.maxMonths} Mo
+                    </span>
                   </button>
                 ))}
               </div>
@@ -224,7 +270,9 @@ export default function EmiCalculatorPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
 
               <div className="border-b border-border pb-4">
-                <span className="text-xs font-semibold text-accent uppercase tracking-wider">Monthly Installment</span>
+                <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                  Monthly Installment
+                </span>
                 <div className="flex items-baseline gap-2 mt-1">
                   <span className="font-display font-extrabold text-3xl sm:text-4xl text-accent tabular-nums">
                     {formatPrice(monthlyEmi)}
@@ -236,7 +284,9 @@ export default function EmiCalculatorPage() {
               <div className="space-y-3 text-xs">
                 <div className="flex justify-between py-1.5 border-b border-border/50">
                   <span className="text-muted-foreground">Product Amount:</span>
-                  <span className="font-semibold text-foreground tabular-nums">{formatPrice(amount)}</span>
+                  <span className="font-semibold text-foreground tabular-nums">
+                    {formatPrice(amount)}
+                  </span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-border/50">
                   <span className="text-muted-foreground">Selected Tenure:</span>
@@ -248,7 +298,9 @@ export default function EmiCalculatorPage() {
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-border/50">
                   <span className="text-muted-foreground">Interest Charge:</span>
-                  <span className={`font-semibold ${isZeroInterest ? 'text-emerald-400' : 'text-foreground'}`}>
+                  <span
+                    className={`font-semibold ${isZeroInterest ? 'text-emerald-400' : 'text-foreground'}`}
+                  >
                     {isZeroInterest ? '0% (Zero Interest)' : formatPrice(totalInterest)}
                   </span>
                 </div>

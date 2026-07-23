@@ -20,10 +20,7 @@ export default function MobileBottomNav() {
     <nav className="lg:hidden fixed bottom-3 left-3 right-3 z-40" aria-label="Mobile navigation">
       <div className="bg-surface/95 backdrop-blur-md border border-border rounded-full shadow-2xl px-1 py-1.5 flex items-center justify-around">
         {NAV_ITEMS.map((item) => {
-          const isActive =
-            item.href === '/'
-              ? pathname === '/'
-              : pathname?.startsWith(item.href);
+          const isActive = item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
           return (
             <Link
               key={item.label}
@@ -38,7 +35,9 @@ export default function MobileBottomNav() {
                 size={22}
                 className={isActive ? 'text-accent' : 'text-muted-foreground'}
               />
-              <span className={`text-[10px] font-medium leading-none ${isActive ? 'text-accent' : 'text-muted-foreground'}`}>
+              <span
+                className={`text-[10px] font-medium leading-none ${isActive ? 'text-accent' : 'text-muted-foreground'}`}
+              >
                 {item.label}
               </span>
               {isActive && (

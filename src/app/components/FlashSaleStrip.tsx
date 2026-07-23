@@ -34,7 +34,9 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
           {String(value).padStart(2, '0')}
         </span>
       </div>
-      <span className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-widest mt-1 font-medium">{label}</span>
+      <span className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-widest mt-1 font-medium">
+        {label}
+      </span>
     </div>
   );
 }
@@ -58,9 +60,13 @@ export default function FlashSaleStrip() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="pulse-dot" />
-                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground tracking-tight">Flash Sale</h2>
+                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground tracking-tight">
+                  Flash Sale
+                </h2>
               </div>
-              <p className="text-xs sm:text-sm text-muted-foreground">Limited time. Maximum savings.</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Limited time. Maximum savings.
+              </p>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
               <TimeUnit value={h} label="HRS" />
@@ -100,7 +106,10 @@ export default function FlashSaleStrip() {
             {FLASH_SALE_PRODUCTS.map((product, idx) => {
               const claimed = [78, 92, 64, 85][idx % 4];
               return (
-                <div key={product.id} className="snap-start-item w-[200px] sm:w-[240px] shrink-0 flex flex-col">
+                <div
+                  key={product.id}
+                  className="snap-start-item w-[200px] sm:w-[240px] shrink-0 flex flex-col"
+                >
                   <ProductCard product={product} />
                   <div className="mt-2 px-1">
                     <div className="flex items-center justify-between text-[10px] text-muted-foreground font-medium mb-1">
@@ -108,7 +117,10 @@ export default function FlashSaleStrip() {
                       <span className="text-accent font-bold">Limited Stock</span>
                     </div>
                     <div className="w-full h-1.5 bg-elevated rounded-full overflow-hidden border border-border">
-                      <div className="h-full bg-accent rounded-full" style={{ width: `${claimed}%` }} />
+                      <div
+                        className="h-full bg-accent rounded-full"
+                        style={{ width: `${claimed}%` }}
+                      />
                     </div>
                   </div>
                 </div>

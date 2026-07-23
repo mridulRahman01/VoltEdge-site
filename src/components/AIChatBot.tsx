@@ -29,7 +29,7 @@ const GREETINGS: Record<Language, Message> = {
   BN: {
     id: 'init-bn',
     sender: 'bot',
-    text: "👋 হ্যালো! আমি VoltAI, আপনার ২৪/৭ টেক অ্যাসিস্ট্যান্ট। আজ আপনাকে কীভাবে সাহায্য করতে পারি?",
+    text: '👋 হ্যালো! আমি VoltAI, আপনার ২৪/৭ টেক অ্যাসিস্ট্যান্ট। আজ আপনাকে কীভাবে সাহায্য করতে পারি?',
     timestamp: 'এখনই',
     quickLinks: [
       { label: '🖥️ পিসি বিল্ডার', href: '/pc-builder' },
@@ -91,32 +91,63 @@ export default function AIChatBot() {
     setIsTyping(true);
 
     setTimeout(() => {
-      let replyText = lang === 'BN' 
-        ? "আপনার প্রশ্নের উত্তর দেওয়ার জন্য ধন্যবাদ! যেকোনো তথ্যের জন্য আমাদের হটলাইন ১৬৭৯৩ এ কল করতে পারেন।"
-        : "I'm happy to assist you with that! For specific stock or order queries, you can also reach our hotline at 16793.";
+      let replyText =
+        lang === 'BN'
+          ? 'আপনার প্রশ্নের উত্তর দেওয়ার জন্য ধন্যবাদ! যেকোনো তথ্যের জন্য আমাদের হটলাইন ১৬৭৯৩ এ কল করতে পারেন।'
+          : "I'm happy to assist you with that! For specific stock or order queries, you can also reach our hotline at 16793.";
       let quickLinks: { label: string; href: string }[] | undefined = undefined;
 
       const lower = query.toLowerCase();
 
       if (lower.includes('laptop') || lower.includes('150') || lower.includes('ল্যাপটপ')) {
-        replyText = lang === 'BN'
-          ? "৳১৫০,০০০ টাকার বাজেট থাকলে **ASUS ROG Strix G16** অথবা **Lenovo Legion Slim 5** সেরা পছন্দ হবে! উভয়টিতেই Intel i7/Ryzen 7 এবং RTX 4060 জিপিইউ রয়েছে সাথে ৩ বছরের অফিসিয়াল ওয়ারেন্টি।"
-          : "For under ৳150,000, we highly recommend the **ASUS ROG Strix G16** or **Lenovo Legion Slim 5**. Both feature Intel i7/Ryzen 7 processors and RTX 4060 GPUs with official warranty!";
-        quickLinks = [{ label: lang === 'BN' ? 'ল্যাপটপ ব্রাউজ করুন' : 'Browse Laptops', href: '/category' }];
-      } else if (lower.includes('emi') || lower.includes('bank') || lower.includes('ইএমআই') || lower.includes('ব্যাংক')) {
-        replyText = lang === 'BN'
-          ? "VoltEdge এ আপনি ব্র্যাক ব্যাংক, সিটি ব্যাংক অ্যামেক্স, ইবিএল, ডিবিবিএল সহ ৩০+ ব্যাংকের ক্রেডিট কার্ডে ০% সুদে ৩৬ মাস পর্যন্ত ইএমআই সুবিধা পাবেন (সর্বনিম্ন ৳১০,০০০ অর্ডারে)।"
-          : "We offer 0% EMI on credit cards across 30+ banks in Bangladesh (BRAC, City Bank AMEX, EBL, DBBL, etc.) for up to 36 months on orders over ৳10,000!";
-        quickLinks = [{ label: lang === 'BN' ? 'ইএমআই ক্যালকুলেটর দেখুন' : 'Open EMI Calculator', href: '/emi-calculator' }];
-      } else if (lower.includes('location') || lower.includes('store') || lower.includes('dhaka') || lower.includes('ঠিকানা') || lower.includes('শোরুম')) {
-        replyText = lang === 'BN'
-          ? "ঢাকায় আমাদের শোরুম রয়েছে আইডিবি ভবন, মাল্টিপ্ল্যান সেন্টার (এলিমেন্ট রোড) এবং উত্তরা সেক্টর ৩ এ। এছাড়া চট্টগ্রামে আগ্রাবাদে শোরুম রয়েছে।"
-          : "VoltEdge has physical stores across Bangladesh including **IDB Bhaban**, **Multiplan Center (Elephant Rd)**, **Uttara Sector 3**, and **Agrabad Chittagong**.";
-      } else if (lower.includes('pc') || lower.includes('compat') || lower.includes('am5') || lower.includes('পিসি') || lower.includes('বিল্ড')) {
-        replyText = lang === 'BN'
-          ? "আপনি আমাদের অনলাইন **পিসি বিল্ডার** দিয়ে সহজেই পাওয়ার ওয়্যাটেজ এবং প্রসেসর-মাদারবোর্ড কম্প্যাটিবিলিটি চেক করতে পারেন।"
-          : "You can use our interactive **PC Builder** tool! It automatically checks socket compatibility, calculates PSU wattage, and generates printable quotes.";
-        quickLinks = [{ label: lang === 'BN' ? 'পিসি বিল্ডারে যান' : 'Open PC Builder', href: '/pc-builder' }];
+        replyText =
+          lang === 'BN'
+            ? '৳১৫০,০০০ টাকার বাজেট থাকলে **ASUS ROG Strix G16** অথবা **Lenovo Legion Slim 5** সেরা পছন্দ হবে! উভয়টিতেই Intel i7/Ryzen 7 এবং RTX 4060 জিপিইউ রয়েছে সাথে ৩ বছরের অফিসিয়াল ওয়ারেন্টি।'
+            : 'For under ৳150,000, we highly recommend the **ASUS ROG Strix G16** or **Lenovo Legion Slim 5**. Both feature Intel i7/Ryzen 7 processors and RTX 4060 GPUs with official warranty!';
+        quickLinks = [
+          { label: lang === 'BN' ? 'ল্যাপটপ ব্রাউজ করুন' : 'Browse Laptops', href: '/category' },
+        ];
+      } else if (
+        lower.includes('emi') ||
+        lower.includes('bank') ||
+        lower.includes('ইএমআই') ||
+        lower.includes('ব্যাংক')
+      ) {
+        replyText =
+          lang === 'BN'
+            ? 'VoltEdge এ আপনি ব্র্যাক ব্যাংক, সিটি ব্যাংক অ্যামেক্স, ইবিএল, ডিবিবিএল সহ ৩০+ ব্যাংকের ক্রেডিট কার্ডে ০% সুদে ৩৬ মাস পর্যন্ত ইএমআই সুবিধা পাবেন (সর্বনিম্ন ৳১০,০০০ অর্ডারে)।'
+            : 'We offer 0% EMI on credit cards across 30+ banks in Bangladesh (BRAC, City Bank AMEX, EBL, DBBL, etc.) for up to 36 months on orders over ৳10,000!';
+        quickLinks = [
+          {
+            label: lang === 'BN' ? 'ইএমআই ক্যালকুলেটর দেখুন' : 'Open EMI Calculator',
+            href: '/emi-calculator',
+          },
+        ];
+      } else if (
+        lower.includes('location') ||
+        lower.includes('store') ||
+        lower.includes('dhaka') ||
+        lower.includes('ঠিকানা') ||
+        lower.includes('শোরুম')
+      ) {
+        replyText =
+          lang === 'BN'
+            ? 'ঢাকায় আমাদের শোরুম রয়েছে আইডিবি ভবন, মাল্টিপ্ল্যান সেন্টার (এলিমেন্ট রোড) এবং উত্তরা সেক্টর ৩ এ। এছাড়া চট্টগ্রামে আগ্রাবাদে শোরুম রয়েছে।'
+            : 'VoltEdge has physical stores across Bangladesh including **IDB Bhaban**, **Multiplan Center (Elephant Rd)**, **Uttara Sector 3**, and **Agrabad Chittagong**.';
+      } else if (
+        lower.includes('pc') ||
+        lower.includes('compat') ||
+        lower.includes('am5') ||
+        lower.includes('পিসি') ||
+        lower.includes('বিল্ড')
+      ) {
+        replyText =
+          lang === 'BN'
+            ? 'আপনি আমাদের অনলাইন **পিসি বিল্ডার** দিয়ে সহজেই পাওয়ার ওয়্যাটেজ এবং প্রসেসর-মাদারবোর্ড কম্প্যাটিবিলিটি চেক করতে পারেন।'
+            : 'You can use our interactive **PC Builder** tool! It automatically checks socket compatibility, calculates PSU wattage, and generates printable quotes.';
+        quickLinks = [
+          { label: lang === 'BN' ? 'পিসি বিল্ডারে যান' : 'Open PC Builder', href: '/pc-builder' },
+        ];
       }
 
       const botMsg: Message = {
@@ -172,7 +203,9 @@ export default function AIChatBot() {
               <div>
                 <h3 className="font-display font-bold text-sm text-foreground flex items-center gap-1.5">
                   VoltAI Assistant
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 font-medium">24/7 Live</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 font-medium">
+                    24/7 Live
+                  </span>
                 </h3>
                 <p className="text-[11px] text-muted-foreground">
                   {lang === 'BN' ? 'আপনার ২৪/৭ টেক সহকারী' : 'Instant AI Support'}
@@ -190,7 +223,10 @@ export default function AIChatBot() {
                 <span>{lang === 'EN' ? '🇬🇧 EN' : '🇧🇩 বাংলা'}</span>
               </button>
 
-              <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-lg hover:bg-surface text-muted-foreground">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-surface text-muted-foreground"
+              >
                 <Icon name="XIcon" size={18} />
               </button>
             </div>

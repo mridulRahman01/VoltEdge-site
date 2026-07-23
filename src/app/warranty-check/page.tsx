@@ -7,16 +7,19 @@ import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Icon from '@/components/ui/AppIcon';
 
-const SAMPLE_SERIALS: Record<string, {
-  product: string;
-  serial: string;
-  distributor: string;
-  purchaseDate: string;
-  expiryDate: string;
-  status: 'Active' | 'Expired';
-  warrantyMonths: number;
-  remainingDays: number;
-}> = {
+const SAMPLE_SERIALS: Record<
+  string,
+  {
+    product: string;
+    serial: string;
+    distributor: string;
+    purchaseDate: string;
+    expiryDate: string;
+    status: 'Active' | 'Expired';
+    warrantyMonths: number;
+    remainingDays: number;
+  }
+> = {
   'SN-ASUS-98741': {
     product: 'ASUS ROG Strix G16 Gaming Laptop',
     serial: 'SN-ASUS-98741',
@@ -50,15 +53,35 @@ const SAMPLE_SERIALS: Record<string, {
 };
 
 const SERVICE_CENTERS = [
-  { city: 'Dhaka - IDB Bhaban', address: 'Shop #402, 4th Floor, IDB Bhaban, Agargaon', phone: '+880 1700-112233', hours: '10 AM - 8 PM (Sat-Thu)' },
-  { city: 'Dhaka - Multiplan', address: 'Level 6, Multiplan Center, Elephant Road', phone: '+880 1700-445566', hours: '10 AM - 8 PM (Sat-Thu)' },
-  { city: 'Chittagong', address: 'Agrabad Commercial Area, Hotel Agrabad Bldg', phone: '+880 1800-778899', hours: '10 AM - 8 PM (Sat-Thu)' },
-  { city: 'Sylhet', address: 'Zindabazar Commercial Complex, 3rd Floor', phone: '+880 1900-334455', hours: '10 AM - 8 PM (Sat-Thu)' },
+  {
+    city: 'Dhaka - IDB Bhaban',
+    address: 'Shop #402, 4th Floor, IDB Bhaban, Agargaon',
+    phone: '+880 1700-112233',
+    hours: '10 AM - 8 PM (Sat-Thu)',
+  },
+  {
+    city: 'Dhaka - Multiplan',
+    address: 'Level 6, Multiplan Center, Elephant Road',
+    phone: '+880 1700-445566',
+    hours: '10 AM - 8 PM (Sat-Thu)',
+  },
+  {
+    city: 'Chittagong',
+    address: 'Agrabad Commercial Area, Hotel Agrabad Bldg',
+    phone: '+880 1800-778899',
+    hours: '10 AM - 8 PM (Sat-Thu)',
+  },
+  {
+    city: 'Sylhet',
+    address: 'Zindabazar Commercial Complex, 3rd Floor',
+    phone: '+880 1900-334455',
+    hours: '10 AM - 8 PM (Sat-Thu)',
+  },
 ];
 
 export default function WarrantyCheckPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [result, setResult] = useState<typeof SAMPLE_SERIALS[string] | null>(null);
+  const [result, setResult] = useState<(typeof SAMPLE_SERIALS)[string] | null>(null);
   const [searched, setSearched] = useState(false);
 
   const handleCheck = (queryStr?: string) => {
@@ -75,7 +98,9 @@ export default function WarrantyCheckPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">Warranty & Serial Verifier</span>
         </div>
@@ -87,9 +112,12 @@ export default function WarrantyCheckPage() {
               <Icon name="ShieldCheckIcon" size={22} />
             </div>
             <div>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">Official Warranty Verifier</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                Official Warranty Verifier
+              </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Verify genuine product authenticity and check active warranty status across Bangladesh
+                Verify genuine product authenticity and check active warranty status across
+                Bangladesh
               </p>
             </div>
           </div>
@@ -148,12 +176,20 @@ export default function WarrantyCheckPage() {
                       <Icon name="CheckCircleIcon" size={14} />
                       100% Genuine BD Authorized Product
                     </span>
-                    <h3 className="font-display font-bold text-xl text-foreground">{result.product}</h3>
-                    <p className="text-xs text-muted-foreground font-mono mt-1">Serial: {result.serial}</p>
+                    <h3 className="font-display font-bold text-xl text-foreground">
+                      {result.product}
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-mono mt-1">
+                      Serial: {result.serial}
+                    </p>
                   </div>
-                  <span className={`px-3 py-1.5 rounded-xl font-display font-bold text-xs self-start sm:self-auto ${
-                    result.status === 'Active' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-danger/20 text-danger border border-danger/40'
-                  }`}>
+                  <span
+                    className={`px-3 py-1.5 rounded-xl font-display font-bold text-xs self-start sm:self-auto ${
+                      result.status === 'Active'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                        : 'bg-danger/20 text-danger border border-danger/40'
+                    }`}
+                  >
                     Warranty {result.status}
                   </span>
                 </div>
@@ -169,7 +205,9 @@ export default function WarrantyCheckPage() {
                   </div>
                   <div className="p-3 bg-elevated rounded-xl border border-border">
                     <span className="text-muted-foreground block mb-1">Coverage Duration</span>
-                    <span className="font-bold text-foreground">{result.warrantyMonths} Months</span>
+                    <span className="font-bold text-foreground">
+                      {result.warrantyMonths} Months
+                    </span>
                   </div>
                   <div className="p-3 bg-elevated rounded-xl border border-border">
                     <span className="text-muted-foreground block mb-1">Remaining Time</span>
@@ -190,9 +228,13 @@ export default function WarrantyCheckPage() {
                 <div className="w-12 h-12 rounded-full bg-danger/10 text-danger flex items-center justify-center mx-auto">
                   <Icon name="XCircleIcon" size={24} />
                 </div>
-                <h3 className="font-display font-bold text-lg text-foreground">Serial Number Not Found</h3>
+                <h3 className="font-display font-bold text-lg text-foreground">
+                  Serial Number Not Found
+                </h3>
                 <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                  No matching record found for &quot;{searchQuery}&quot;. Please double check your invoice or contact VoltEdge support hotline at <strong className="text-accent">16793</strong> for assistance.
+                  No matching record found for &quot;{searchQuery}&quot;. Please double check your
+                  invoice or contact VoltEdge support hotline at{' '}
+                  <strong className="text-accent">16793</strong> for assistance.
                 </p>
               </div>
             )}
@@ -201,10 +243,15 @@ export default function WarrantyCheckPage() {
 
         {/* Service Centers */}
         <div>
-          <h2 className="font-display font-bold text-xl text-foreground mb-4">Authorized Service Centers in Bangladesh</h2>
+          <h2 className="font-display font-bold text-xl text-foreground mb-4">
+            Authorized Service Centers in Bangladesh
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICE_CENTERS.map((sc) => (
-              <div key={sc.city} className="p-4 bg-surface border border-border rounded-xl space-y-2 text-xs">
+              <div
+                key={sc.city}
+                className="p-4 bg-surface border border-border rounded-xl space-y-2 text-xs"
+              >
                 <h4 className="font-display font-bold text-sm text-foreground flex items-center gap-1.5">
                   <Icon name="MapPinIcon" size={14} className="text-accent" />
                   {sc.city}

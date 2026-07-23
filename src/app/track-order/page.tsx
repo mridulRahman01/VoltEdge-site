@@ -7,18 +7,21 @@ import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Icon from '@/components/ui/AppIcon';
 
-const SAMPLE_ORDERS: Record<string, {
-  orderId: string;
-  customerName: string;
-  items: string;
-  total: number;
-  courier: string;
-  trackingNo: string;
-  rider: string;
-  riderPhone: string;
-  currentStep: number;
-  timeline: { title: string; desc: string; time: string; done: boolean }[];
-}> = {
+const SAMPLE_ORDERS: Record<
+  string,
+  {
+    orderId: string;
+    customerName: string;
+    items: string;
+    total: number;
+    courier: string;
+    trackingNo: string;
+    rider: string;
+    riderPhone: string;
+    currentStep: number;
+    timeline: { title: string; desc: string; time: string; done: boolean }[];
+  }
+> = {
   'VE-2026-07842': {
     orderId: 'VE-2026-07842',
     customerName: 'Tanvir Ahmed',
@@ -30,11 +33,36 @@ const SAMPLE_ORDERS: Record<string, {
     riderPhone: '+880 1711-223344',
     currentStep: 3,
     timeline: [
-      { title: 'Order Confirmed', desc: 'Order received at VoltEdge IDB Hub', time: 'Yesterday, 10:30 AM', done: true },
-      { title: 'Quality Inspection & Packed', desc: 'Warranty sealed and serial verified', time: 'Yesterday, 02:15 PM', done: true },
-      { title: 'Dispatched to Courier', desc: 'Handed over to Pathao Express Hub', time: 'Today, 09:00 AM', done: true },
-      { title: 'Out for Delivery', desc: 'Rider is on the way to your address', time: 'Today, 01:30 PM', done: true },
-      { title: 'Delivered', desc: 'Pending OTP verification', time: 'Estimated by 5:00 PM', done: false },
+      {
+        title: 'Order Confirmed',
+        desc: 'Order received at VoltEdge IDB Hub',
+        time: 'Yesterday, 10:30 AM',
+        done: true,
+      },
+      {
+        title: 'Quality Inspection & Packed',
+        desc: 'Warranty sealed and serial verified',
+        time: 'Yesterday, 02:15 PM',
+        done: true,
+      },
+      {
+        title: 'Dispatched to Courier',
+        desc: 'Handed over to Pathao Express Hub',
+        time: 'Today, 09:00 AM',
+        done: true,
+      },
+      {
+        title: 'Out for Delivery',
+        desc: 'Rider is on the way to your address',
+        time: 'Today, 01:30 PM',
+        done: true,
+      },
+      {
+        title: 'Delivered',
+        desc: 'Pending OTP verification',
+        time: 'Estimated by 5:00 PM',
+        done: false,
+      },
     ],
   },
   'VE-2026-9901': {
@@ -48,9 +76,24 @@ const SAMPLE_ORDERS: Record<string, {
     riderPhone: '+880 1819-887766',
     currentStep: 2,
     timeline: [
-      { title: 'Order Confirmed', desc: 'Order received at VoltEdge Multiplan Hub', time: 'Today, 08:00 AM', done: true },
-      { title: 'Quality Inspection & Packed', desc: 'Anti-static packing & warranty tag attached', time: 'Today, 11:45 AM', done: true },
-      { title: 'Dispatched to Courier', desc: 'Awaiting courier pickup', time: 'Estimated 3:00 PM', done: false },
+      {
+        title: 'Order Confirmed',
+        desc: 'Order received at VoltEdge Multiplan Hub',
+        time: 'Today, 08:00 AM',
+        done: true,
+      },
+      {
+        title: 'Quality Inspection & Packed',
+        desc: 'Anti-static packing & warranty tag attached',
+        time: 'Today, 11:45 AM',
+        done: true,
+      },
+      {
+        title: 'Dispatched to Courier',
+        desc: 'Awaiting courier pickup',
+        time: 'Estimated 3:00 PM',
+        done: false,
+      },
       { title: 'Out for Delivery', desc: 'Pending', time: 'Tomorrow', done: false },
       { title: 'Delivered', desc: 'Pending', time: 'Tomorrow', done: false },
     ],
@@ -59,7 +102,7 @@ const SAMPLE_ORDERS: Record<string, {
 
 export default function TrackOrderPage() {
   const [query, setQuery] = useState('');
-  const [order, setOrder] = useState<typeof SAMPLE_ORDERS[string] | null>(null);
+  const [order, setOrder] = useState<(typeof SAMPLE_ORDERS)[string] | null>(null);
   const [searched, setSearched] = useState(false);
 
   const handleTrack = (queryStr?: string) => {
@@ -75,7 +118,9 @@ export default function TrackOrderPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">Track Order</span>
         </div>
@@ -87,7 +132,9 @@ export default function TrackOrderPage() {
               <Icon name="TruckIcon" size={22} />
             </div>
             <div>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">Live Order Tracking</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                Live Order Tracking
+              </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Track your parcel in real-time across Pathao, Steadfast, and RedX couriers
               </p>
@@ -143,35 +190,52 @@ export default function TrackOrderPage() {
                 {/* Top Info */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border pb-4">
                   <div>
-                    <span className="text-xs text-accent font-bold uppercase tracking-wider">Order Status Timeline</span>
-                    <h3 className="font-display font-bold text-xl text-foreground mt-0.5">{order.orderId}</h3>
+                    <span className="text-xs text-accent font-bold uppercase tracking-wider">
+                      Order Status Timeline
+                    </span>
+                    <h3 className="font-display font-bold text-xl text-foreground mt-0.5">
+                      {order.orderId}
+                    </h3>
                     <p className="text-xs text-muted-foreground mt-1">{order.items}</p>
                   </div>
                   <div className="text-left sm:text-right">
                     <span className="text-xs text-muted-foreground block">Courier Partner</span>
-                    <span className="font-display font-bold text-sm text-foreground">{order.courier}</span>
-                    <span className="text-xs font-mono text-accent block mt-0.5">Tracking #: {order.trackingNo}</span>
+                    <span className="font-display font-bold text-sm text-foreground">
+                      {order.courier}
+                    </span>
+                    <span className="text-xs font-mono text-accent block mt-0.5">
+                      Tracking #: {order.trackingNo}
+                    </span>
                   </div>
                 </div>
 
                 {/* Timeline */}
                 <div className="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-border">
                   {order.timeline.map((step, idx) => (
-                    <div key={step.title} className="relative flex items-start justify-between gap-4">
+                    <div
+                      key={step.title}
+                      className="relative flex items-start justify-between gap-4"
+                    >
                       {/* Step Indicator Circle */}
-                      <div className={`absolute -left-6 top-0.5 w-4 h-4 rounded-full border-2 transition-colors ${
-                        step.done
-                          ? 'bg-accent border-accent shadow-[0_0_10px_var(--accent)]'
-                          : 'bg-surface border-border'
-                      }`} />
+                      <div
+                        className={`absolute -left-6 top-0.5 w-4 h-4 rounded-full border-2 transition-colors ${
+                          step.done
+                            ? 'bg-accent border-accent shadow-[0_0_10px_var(--accent)]'
+                            : 'bg-surface border-border'
+                        }`}
+                      />
 
                       <div>
-                        <h4 className={`font-display font-bold text-sm ${step.done ? 'text-foreground' : 'text-muted-foreground'}`}>
+                        <h4
+                          className={`font-display font-bold text-sm ${step.done ? 'text-foreground' : 'text-muted-foreground'}`}
+                        >
                           {step.title}
                         </h4>
                         <p className="text-xs text-muted-foreground">{step.desc}</p>
                       </div>
-                      <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{step.time}</span>
+                      <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">
+                        {step.time}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -184,7 +248,9 @@ export default function TrackOrderPage() {
                         <Icon name="UserIcon" size={20} />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-foreground">Assigned Delivery Rider</p>
+                        <p className="text-xs font-semibold text-foreground">
+                          Assigned Delivery Rider
+                        </p>
                         <p className="text-sm font-bold text-accent">{order.rider}</p>
                       </div>
                     </div>
@@ -205,7 +271,8 @@ export default function TrackOrderPage() {
                 </div>
                 <h3 className="font-display font-bold text-lg text-foreground">Order Not Found</h3>
                 <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                  No matching tracking details found for &quot;{query}&quot;. Please verify your Order ID or call support at <strong className="text-accent">16793</strong>.
+                  No matching tracking details found for &quot;{query}&quot;. Please verify your
+                  Order ID or call support at <strong className="text-accent">16793</strong>.
                 </p>
               </div>
             )}

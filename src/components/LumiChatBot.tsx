@@ -67,7 +67,9 @@ export default function LumiChatBot() {
       });
 
       const data = await res.json();
-      const replyText = data?.reply || "Hey! I'm Lumi from VoltEdge. Start by clicking 'Choose' next to Processor (CPU) in the PC Builder section right on this page!";
+      const replyText =
+        data?.reply ||
+        "Hey! I'm Lumi from VoltEdge. Start by clicking 'Choose' next to Processor (CPU) in the PC Builder section right on this page!";
 
       setMessages((prev) => [
         ...prev,
@@ -129,7 +131,9 @@ export default function LumiChatBot() {
                       Online • Hardware Specialist
                     </span>
                   </div>
-                  <p className="text-[11px] text-muted-foreground">VoltEdge Dhaka Store Specialist</p>
+                  <p className="text-[11px] text-muted-foreground">
+                    VoltEdge Dhaka Store Specialist
+                  </p>
                 </div>
               </div>
 
@@ -149,9 +153,7 @@ export default function LumiChatBot() {
                   key={m.id}
                   className={`flex gap-2.5 items-end ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  {m.sender === 'lumi' && (
-                    <LumiAvatar className="w-8 h-8 shrink-0 mb-1" />
-                  )}
+                  {m.sender === 'lumi' && <LumiAvatar className="w-8 h-8 shrink-0 mb-1" />}
                   <div
                     className={`max-w-[85%] rounded-2xl p-3.5 text-xs leading-relaxed ${
                       m.sender === 'user'
@@ -159,9 +161,7 @@ export default function LumiChatBot() {
                         : 'bg-elevated border border-border text-foreground rounded-bl-none shadow-sm space-y-2'
                     }`}
                   >
-                    <div className="whitespace-pre-wrap font-sans">
-                      {m.text}
-                    </div>
+                    <div className="whitespace-pre-wrap font-sans">{m.text}</div>
                     <span className="text-[9px] opacity-60 block text-right mt-1 font-mono">
                       {m.time}
                     </span>

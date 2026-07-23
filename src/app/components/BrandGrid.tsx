@@ -20,8 +20,12 @@ export default function BrandGrid() {
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="font-display font-bold text-lg sm:text-xl text-foreground">Top Authorized Brands</h2>
-            <p className="text-xs sm:text-sm text-muted-foreground">Official warranty guaranteed on all major brands</p>
+            <h2 className="font-display font-bold text-lg sm:text-xl text-foreground">
+              Top Authorized Brands
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Official warranty guaranteed on all major brands
+            </p>
           </div>
           <Link href="/category" className="text-xs font-semibold text-accent hover:underline">
             All Brands →
@@ -38,7 +42,9 @@ export default function BrandGrid() {
               <span className="font-display font-extrabold text-base sm:text-lg text-foreground group-hover:text-accent transition-colors">
                 {brand.name}
               </span>
-              <span className="text-[10px] text-muted-foreground truncate w-full mt-0.5">{brand.count}</span>
+              <span className="text-[10px] text-muted-foreground truncate w-full mt-0.5">
+                {brand.count}
+              </span>
             </Link>
           ))}
         </div>

@@ -55,18 +55,32 @@ export default function ProductInfo() {
       {/* Rating */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1">
-          {[1,2,3,4,5]?.map((star) => (
-            <Icon key={star} name="StarIcon" size={16} className={star <= Math.round(PRODUCT?.rating) ? 'text-warning' : 'text-border'} variant="solid" />
+          {[1, 2, 3, 4, 5]?.map((star) => (
+            <Icon
+              key={star}
+              name="StarIcon"
+              size={16}
+              className={star <= Math.round(PRODUCT?.rating) ? 'text-warning' : 'text-border'}
+              variant="solid"
+            />
           ))}
         </div>
         <span className="text-sm font-medium text-foreground">{PRODUCT?.rating}</span>
         <span className="text-sm text-muted-foreground">({PRODUCT?.reviews} reviews)</span>
-        <Link href="#reviews" className="text-sm text-accent hover:text-accent/80 transition-colors">Write a review</Link>
+        <Link
+          href="#reviews"
+          className="text-sm text-accent hover:text-accent/80 transition-colors"
+        >
+          Write a review
+        </Link>
       </div>
       {/* Spec chips */}
       <div className="flex flex-wrap gap-2">
         {PRODUCT?.specs?.map((spec) => (
-          <span key={spec} className="px-3 py-1.5 rounded-xl bg-elevated border border-border text-xs font-medium text-muted-foreground">
+          <span
+            key={spec}
+            className="px-3 py-1.5 rounded-xl bg-elevated border border-border text-xs font-medium text-muted-foreground"
+          >
             {spec}
           </span>
         ))}
@@ -74,9 +88,15 @@ export default function ProductInfo() {
       {/* Price */}
       <div className="p-5 bg-surface border border-border rounded-2xl space-y-2">
         <div className="flex items-baseline gap-3">
-          <span className="font-display font-bold text-3xl text-accent tabular-nums">{formatPrice(PRODUCT?.price)}</span>
-          <span className="text-lg text-muted-foreground line-through tabular-nums">{formatPrice(PRODUCT?.oldPrice)}</span>
-          <span className="text-sm font-medium text-danger">Save {formatPrice(PRODUCT?.oldPrice - PRODUCT?.price)}</span>
+          <span className="font-display font-bold text-3xl text-accent tabular-nums">
+            {formatPrice(PRODUCT?.price)}
+          </span>
+          <span className="text-lg text-muted-foreground line-through tabular-nums">
+            {formatPrice(PRODUCT?.oldPrice)}
+          </span>
+          <span className="text-sm font-medium text-danger">
+            Save {formatPrice(PRODUCT?.oldPrice - PRODUCT?.price)}
+          </span>
         </div>
         {/* EMI */}
         <div className="flex items-center gap-3 flex-wrap">
@@ -86,13 +106,17 @@ export default function ProductInfo() {
               key={m}
               onClick={() => setEmiMonths(m)}
               className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
-                emiMonths === m ? 'bg-accent/10 border border-accent/30 text-accent' : 'bg-elevated border border-border text-muted-foreground hover:text-foreground'
+                emiMonths === m
+                  ? 'bg-accent/10 border border-accent/30 text-accent'
+                  : 'bg-elevated border border-border text-muted-foreground hover:text-foreground'
               }`}
             >
               {m}mo
             </button>
           ))}
-          <span className="text-sm font-display font-semibold text-accent">{formatEmi(PRODUCT?.price, emiMonths)}</span>
+          <span className="text-sm font-display font-semibold text-accent">
+            {formatEmi(PRODUCT?.price, emiMonths)}
+          </span>
         </div>
       </div>
       {/* Qty + Actions */}
@@ -105,7 +129,9 @@ export default function ProductInfo() {
           >
             <Icon name="MinusIcon" size={16} />
           </button>
-          <span className="px-4 py-3 font-display font-semibold text-foreground min-w-[50px] text-center tabular-nums">{qty}</span>
+          <span className="px-4 py-3 font-display font-semibold text-foreground min-w-[50px] text-center tabular-nums">
+            {qty}
+          </span>
           <button
             onClick={() => setQty(qty + 1)}
             className="px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-surface transition-colors"
@@ -118,7 +144,9 @@ export default function ProductInfo() {
         <button
           onClick={handleAddToCart}
           className={`flex-1 min-w-[140px] h-12 flex items-center justify-center gap-2 px-4 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all leading-none ${
-            addedToCart ? 'bg-accent/20 text-accent border border-accent/40' : 'bg-accent text-accent-foreground hover:glow-accent-sm'
+            addedToCart
+              ? 'bg-accent/20 text-accent border border-accent/40'
+              : 'bg-accent text-accent-foreground hover:glow-accent-sm'
           }`}
         >
           <Icon name={addedToCart ? 'CheckIcon' : 'ShoppingCartIcon'} size={18} />
@@ -133,14 +161,19 @@ export default function ProductInfo() {
             else toast.info(`Removed "${PRODUCT.name}" from wishlist.`);
           }}
           className={`p-3.5 rounded-xl border transition-all ${
-            wishlisted ? 'bg-danger/10 border-danger/30 text-danger' : 'bg-elevated border-border text-muted-foreground hover:text-danger hover:border-danger/30'
+            wishlisted
+              ? 'bg-danger/10 border-danger/30 text-danger'
+              : 'bg-elevated border-border text-muted-foreground hover:text-danger hover:border-danger/30'
           }`}
           aria-label="Add to wishlist"
         >
           <Icon name="HeartIcon" size={20} />
         </button>
 
-        <button className="p-3.5 rounded-xl bg-elevated border border-border text-muted-foreground hover:text-foreground transition-colors" aria-label="Compare">
+        <button
+          className="p-3.5 rounded-xl bg-elevated border border-border text-muted-foreground hover:text-foreground transition-colors"
+          aria-label="Compare"
+        >
           <Icon name="GitCompareIcon" size={20} />
         </button>
       </div>

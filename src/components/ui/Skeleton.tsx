@@ -33,7 +33,9 @@ export function ProductCardSkeleton() {
           <Skeleton className="h-6 w-16 rounded-md" />
         </div>
         <div className="flex gap-1">
-          {[1,2,3,4,5].map(i => <Skeleton key={i} className="h-3 w-3 rounded-sm" />)}
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Skeleton key={i} className="h-3 w-3 rounded-sm" />
+          ))}
         </div>
         <Skeleton className="h-6 w-28" />
         <Skeleton className="h-3 w-24" />
@@ -111,7 +113,9 @@ export function ProductDetailSkeleton() {
         <div className="space-y-4">
           <Skeleton className="aspect-square rounded-2xl" />
           <div className="flex gap-3">
-            {[1,2,3,4].map(i => <Skeleton key={i} className="w-20 h-20 rounded-xl" />)}
+            {[1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="w-20 h-20 rounded-xl" />
+            ))}
           </div>
         </div>
         <div className="space-y-6">
@@ -119,7 +123,9 @@ export function ProductDetailSkeleton() {
           <Skeleton className="h-10 w-full" />
           <Skeleton className="h-10 w-3/4" />
           <div className="flex gap-2">
-            {[1,2,3].map(i => <Skeleton key={i} className="h-7 w-20 rounded-md" />)}
+            {[1, 2, 3].map((i) => (
+              <Skeleton key={i} className="h-7 w-20 rounded-md" />
+            ))}
           </div>
           <Skeleton className="h-12 w-40" />
           <Skeleton className="h-4 w-32" />
@@ -157,7 +163,7 @@ export function CartSkeleton() {
     <div className="max-w-[1400px] mx-auto px-4 py-8">
       <div className="grid lg:grid-cols-[1fr_380px] gap-8">
         <div className="space-y-4">
-          {[1,2,3].map(i => (
+          {[1, 2, 3].map((i) => (
             <div key={i} className="flex gap-4 p-4 bg-surface border border-border rounded-2xl">
               <Skeleton className="w-24 h-24 rounded-xl shrink-0" />
               <div className="flex-1 space-y-2">

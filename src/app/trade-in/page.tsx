@@ -16,7 +16,12 @@ const CATEGORIES = [
 ];
 
 const CONDITIONS = [
-  { id: 'excellent', label: 'Like New (95%+)', mult: 1.0, desc: 'Flawless condition, original box, zero scratches' },
+  {
+    id: 'excellent',
+    label: 'Like New (95%+)',
+    mult: 1.0,
+    desc: 'Flawless condition, original box, zero scratches',
+  },
   { id: 'good', label: 'Good (80%+)', mult: 0.82, desc: 'Minor cosmetic marks, 100% functional' },
   { id: 'fair', label: 'Fair (60%+)', mult: 0.65, desc: 'Visible wear/dents, works properly' },
 ];
@@ -41,7 +46,9 @@ export default function TradeInPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">Tech Trade-In & Exchange</span>
         </div>
@@ -53,9 +60,12 @@ export default function TradeInPage() {
               <Icon name="RefreshCwIcon" size={22} />
             </div>
             <div>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">Old Tech Trade-In & Exchange</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                Old Tech Trade-In & Exchange
+              </h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Exchange your old laptop, GPU, or smartphone for instant store credit towards a new purchase
+                Exchange your old laptop, GPU, or smartphone for instant store credit towards a new
+                purchase
               </p>
             </div>
           </div>
@@ -91,7 +101,9 @@ export default function TradeInPage() {
             {/* Step 2: Brand & Age */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="font-display font-semibold text-sm text-foreground block mb-2">Brand / Manufacturer</label>
+                <label className="font-display font-semibold text-sm text-foreground block mb-2">
+                  Brand / Manufacturer
+                </label>
                 <input
                   type="text"
                   value={brand}
@@ -101,7 +113,9 @@ export default function TradeInPage() {
                 />
               </div>
               <div>
-                <label className="font-display font-semibold text-sm text-foreground block mb-2">Device Age ({ageMonths} Months)</label>
+                <label className="font-display font-semibold text-sm text-foreground block mb-2">
+                  Device Age ({ageMonths} Months)
+                </label>
                 <input
                   type="range"
                   min={3}
@@ -144,7 +158,9 @@ export default function TradeInPage() {
                         className="accent-accent w-4 h-4"
                       />
                       <div>
-                        <p className="font-display font-semibold text-sm text-foreground">{cond.label}</p>
+                        <p className="font-display font-semibold text-sm text-foreground">
+                          {cond.label}
+                        </p>
                         <p className="text-xs text-muted-foreground">{cond.desc}</p>
                       </div>
                     </div>
@@ -157,19 +173,25 @@ export default function TradeInPage() {
           {/* Right Summary */}
           <div className="bg-surface border border-accent/40 rounded-2xl p-6 shadow-xl space-y-6 lg:sticky lg:top-24">
             <div className="border-b border-border pb-4">
-              <span className="text-xs font-semibold text-accent uppercase tracking-wider">Estimated Trade-In Credit</span>
+              <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                Estimated Trade-In Credit
+              </span>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="font-display font-extrabold text-3xl sm:text-4xl text-accent tabular-nums">
                   {formatPrice(estimatedValue)}
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">Instant discount voucher towards your next VoltEdge order</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Instant discount voucher towards your next VoltEdge order
+              </p>
             </div>
 
             <div className="space-y-2.5 text-xs text-muted-foreground">
               <div className="flex justify-between py-1 border-b border-border/50">
                 <span>Selected Item:</span>
-                <span className="font-semibold text-foreground">{catObj.name} ({brand})</span>
+                <span className="font-semibold text-foreground">
+                  {catObj.name} ({brand})
+                </span>
               </div>
               <div className="flex justify-between py-1 border-b border-border/50">
                 <span>Estimated Age:</span>
@@ -183,11 +205,15 @@ export default function TradeInPage() {
 
             {claimedVoucher ? (
               <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center space-y-2">
-                <span className="text-xs text-emerald-400 font-bold block">✓ Voucher Code Claimed!</span>
+                <span className="text-xs text-emerald-400 font-bold block">
+                  ✓ Voucher Code Claimed!
+                </span>
                 <code className="text-sm font-mono font-bold text-accent px-3 py-1 bg-surface border border-border rounded-lg inline-block">
                   TRADEIN-{estimatedValue}
                 </code>
-                <p className="text-[10px] text-muted-foreground">Use this code at checkout to apply your trade-in credit.</p>
+                <p className="text-[10px] text-muted-foreground">
+                  Use this code at checkout to apply your trade-in credit.
+                </p>
               </div>
             ) : (
               <button
@@ -203,7 +229,10 @@ export default function TradeInPage() {
               <p className="font-semibold text-foreground">How Trade-In Works:</p>
               <ol className="list-decimal pl-4 space-y-0.5">
                 <li>Claim your voucher code above.</li>
-                <li>Place your new order online or bring your old device to any of our 12 stores in BD.</li>
+                <li>
+                  Place your new order online or bring your old device to any of our 12 stores in
+                  BD.
+                </li>
                 <li>Our tech team inspects the device and deducts the credit instantly!</li>
               </ol>
             </div>

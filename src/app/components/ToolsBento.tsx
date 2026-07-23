@@ -7,7 +7,9 @@ export default function ToolsBento() {
     <section className="py-12 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="mb-8">
-          <h2 className="font-display font-bold text-2xl text-foreground tracking-tight mb-1">Power Tools</h2>
+          <h2 className="font-display font-bold text-2xl text-foreground tracking-tight mb-1">
+            Power Tools
+          </h2>
           <p className="text-sm text-muted-foreground">Build smarter, choose better</p>
         </div>
 
@@ -24,7 +26,10 @@ export default function ToolsBento() {
             {/* Background glow */}
             <div
               className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none opacity-30 group-hover:opacity-60 transition-opacity"
-              style={{ background: 'radial-gradient(circle, rgba(0,229,160,0.15) 0%, transparent 70%)', transform: 'translate(30%, -30%)' }}
+              style={{
+                background: 'radial-gradient(circle, rgba(0,229,160,0.15) 0%, transparent 70%)',
+                transform: 'translate(30%, -30%)',
+              }}
             />
 
             {/* SVG PC illustration */}
@@ -38,13 +43,20 @@ export default function ToolsBento() {
               <span className="inline-block px-2.5 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold font-display uppercase tracking-widest mb-3">
                 Flagship Tool
               </span>
-              <h3 className="font-display font-bold text-2xl text-foreground mb-2 tracking-tight">PC Builder</h3>
+              <h3 className="font-display font-bold text-2xl text-foreground mb-2 tracking-tight">
+                PC Builder
+              </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Build your dream PC with real-time compatibility checks, wattage calculator, and instant pricing. Save and share your build.
+                Build your dream PC with real-time compatibility checks, wattage calculator, and
+                instant pricing. Save and share your build.
               </p>
               <div className="flex items-center gap-2 text-accent font-semibold text-sm font-display">
                 Start Building
-                <Icon name="ArrowRightIcon" size={16} className="group-hover:translate-x-1 transition-transform" />
+                <Icon
+                  name="ArrowRightIcon"
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </div>
             </div>
           </Link>
@@ -59,9 +71,15 @@ export default function ToolsBento() {
             </div>
             <div>
               <h3 className="font-display font-bold text-lg text-foreground mb-1">Laptop Finder</h3>
-              <p className="text-sm text-muted-foreground">Answer 5 questions, get your perfect match</p>
+              <p className="text-sm text-muted-foreground">
+                Answer 5 questions, get your perfect match
+              </p>
             </div>
-            <Icon name="ChevronRightIcon" size={20} className="ml-auto text-muted-foreground group-hover:text-accent transition-colors shrink-0" />
+            <Icon
+              name="ChevronRightIcon"
+              size={20}
+              className="ml-auto text-muted-foreground group-hover:text-accent transition-colors shrink-0"
+            />
           </Link>
 
           {/* EMI Calculator */}
@@ -73,10 +91,16 @@ export default function ToolsBento() {
               <Icon name="CalculatorIcon" size={28} className="text-accent" />
             </div>
             <div>
-              <h3 className="font-display font-bold text-lg text-foreground mb-1">EMI Calculator</h3>
+              <h3 className="font-display font-bold text-lg text-foreground mb-1">
+                EMI Calculator
+              </h3>
               <p className="text-sm text-muted-foreground">0% EMI · 3 to 36 months · All banks</p>
             </div>
-            <Icon name="ChevronRightIcon" size={20} className="ml-auto text-muted-foreground group-hover:text-accent transition-colors shrink-0" />
+            <Icon
+              name="ChevronRightIcon"
+              size={20}
+              className="ml-auto text-muted-foreground group-hover:text-accent transition-colors shrink-0"
+            />
           </Link>
         </div>
       </div>

@@ -32,13 +32,23 @@ export default function CategoryRail() {
     <section className="py-6 sm:py-8 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-display font-semibold text-base sm:text-lg text-foreground">Shop by Category</h2>
-          <Link href="/category" className="text-xs text-accent hover:text-accent/80 transition-colors min-h-[36px] flex items-center touch-manipulation">View all →</Link>
+          <h2 className="font-display font-semibold text-base sm:text-lg text-foreground">
+            Shop by Category
+          </h2>
+          <Link
+            href="/category"
+            className="text-xs text-accent hover:text-accent/80 transition-colors min-h-[36px] flex items-center touch-manipulation"
+          >
+            View all →
+          </Link>
         </div>
         {loading ? (
           <div className="flex gap-2 sm:gap-3 overflow-hidden">
             {Array.from({ length: 8 })?.map((_, i) => (
-              <Skeleton key={i} className="h-20 w-20 sm:w-24 rounded-2xl shrink-0 skeleton-shimmer" />
+              <Skeleton
+                key={i}
+                className="h-20 w-20 sm:w-24 rounded-2xl shrink-0 skeleton-shimmer"
+              />
             ))}
           </div>
         ) : (
@@ -52,8 +62,12 @@ export default function CategoryRail() {
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-elevated border border-border flex items-center justify-center group-hover:border-accent/40 group-hover:bg-accent/5 transition-all">
                   <Icon name={cat?.icon} size={18} className="text-accent" />
                 </div>
-                <span className="text-[11px] sm:text-xs font-medium text-foreground text-center leading-tight">{cat?.label}</span>
-                <span className="text-[9px] sm:text-[10px] text-muted-foreground">{cat?.count}</span>
+                <span className="text-[11px] sm:text-xs font-medium text-foreground text-center leading-tight">
+                  {cat?.label}
+                </span>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground">
+                  {cat?.count}
+                </span>
               </Link>
             ))}
           </div>

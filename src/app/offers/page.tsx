@@ -141,14 +141,21 @@ const OFFERS: OfferBanner[] = [
   },
 ];
 
-const CATEGORY_TABS = ['All Offers', 'Laptops', 'Components', 'Monitors', 'Networking', 'Gaming', 'Accessories'];
+const CATEGORY_TABS = [
+  'All Offers',
+  'Laptops',
+  'Components',
+  'Monitors',
+  'Networking',
+  'Gaming',
+  'Accessories',
+];
 
 export default function OffersPage() {
   const [activeTab, setActiveTab] = useState('All Offers');
 
-  const filteredOffers = activeTab === 'All Offers'
-    ? OFFERS
-    : OFFERS.filter((o) => o.category === activeTab);
+  const filteredOffers =
+    activeTab === 'All Offers' ? OFFERS : OFFERS.filter((o) => o.category === activeTab);
 
   return (
     <div className="min-h-screen bg-background">
@@ -156,7 +163,9 @@ export default function OffersPage() {
       <main className="pt-20 sm:pt-24 pb-20 max-w-[1400px] mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+          <Link href="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span>/</span>
           <span className="text-foreground font-medium">Offers & Mega Deals</span>
         </div>
@@ -166,10 +175,13 @@ export default function OffersPage() {
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <span className="w-3 h-3 rounded-full bg-accent animate-ping" />
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">Active Deals & Offers</h1>
+              <h1 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
+                Active Deals & Offers
+              </h1>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground">
-              Exclusive promotional campaigns, bundles, cashbacks, and free gift offers in Bangladesh
+              Exclusive promotional campaigns, bundles, cashbacks, and free gift offers in
+              Bangladesh
             </p>
           </div>
 
@@ -222,16 +234,18 @@ export default function OffersPage() {
                 <h3 className="font-display font-black text-xl text-white group-hover:text-accent transition-colors leading-tight mb-2">
                   {offer.title}
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {offer.subtitle}
-                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{offer.subtitle}</p>
               </div>
 
               {/* Bottom Row CTA */}
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                 <span className="text-xs font-semibold text-accent group-hover:underline flex items-center gap-1.5">
                   View Campaign Products
-                  <Icon name="ArrowRightIcon" size={14} className="group-hover:translate-x-1 transition-transform" />
+                  <Icon
+                    name="ArrowRightIcon"
+                    size={14}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-surface/60 text-muted-foreground">
                   {offer.category}

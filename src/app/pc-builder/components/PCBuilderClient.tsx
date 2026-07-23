@@ -77,27 +77,99 @@ const SECTIONED_SLOTS: { title: string; slots: SlotDef[] }[] = [
 // Fallback items for extra slots
 const MOCK_EXTRA_ITEMS: Record<string, SelectedComponent[]> = {
   monitor: [
-    { id: 'mon-1', name: 'ASUS TUF Gaming VG279Q3A 27" 180Hz Monitor', price: 28500, image: '/assets/images/no_image.png', alt: 'Monitor', specs: { refreshRate: '180Hz', panel: 'Fast IPS' }, brand: 'ASUS' },
-    { id: 'mon-2', name: 'MSI G244F E2 23.8" 180Hz IPS Monitor', price: 19500, image: '/assets/images/no_image.png', alt: 'Monitor', specs: { refreshRate: '180Hz', panel: 'IPS' }, brand: 'MSI' },
+    {
+      id: 'mon-1',
+      name: 'ASUS TUF Gaming VG279Q3A 27" 180Hz Monitor',
+      price: 28500,
+      image: '/assets/images/no_image.png',
+      alt: 'Monitor',
+      specs: { refreshRate: '180Hz', panel: 'Fast IPS' },
+      brand: 'ASUS',
+    },
+    {
+      id: 'mon-2',
+      name: 'MSI G244F E2 23.8" 180Hz IPS Monitor',
+      price: 19500,
+      image: '/assets/images/no_image.png',
+      alt: 'Monitor',
+      specs: { refreshRate: '180Hz', panel: 'IPS' },
+      brand: 'MSI',
+    },
   ],
   fan: [
-    { id: 'fan-1', name: 'Corsair LL120 RGB 120mm Dual Light Loop Fan', price: 3200, image: '/assets/images/no_image.png', alt: 'Fan', specs: { size: '120mm', rgb: 'ARGB' }, brand: 'Corsair' },
+    {
+      id: 'fan-1',
+      name: 'Corsair LL120 RGB 120mm Dual Light Loop Fan',
+      price: 3200,
+      image: '/assets/images/no_image.png',
+      alt: 'Fan',
+      specs: { size: '120mm', rgb: 'ARGB' },
+      brand: 'Corsair',
+    },
   ],
   ups: [
-    { id: 'ups-1', name: 'Apollo 1200VA Offline UPS with Surge Protection', price: 6800, image: '/assets/images/no_image.png', alt: 'UPS', specs: { capacity: '1200VA', backup: '15-20 Min' }, brand: 'Apollo' },
+    {
+      id: 'ups-1',
+      name: 'Apollo 1200VA Offline UPS with Surge Protection',
+      price: 6800,
+      image: '/assets/images/no_image.png',
+      alt: 'UPS',
+      specs: { capacity: '1200VA', backup: '15-20 Min' },
+      brand: 'Apollo',
+    },
   ],
   software: [
-    { id: 'soft-1', name: 'Microsoft Windows 11 Home 64-Bit OEM', price: 14500, image: '/assets/images/no_image.png', alt: 'Windows 11', specs: { type: 'OS License' }, brand: 'Microsoft' },
+    {
+      id: 'soft-1',
+      name: 'Microsoft Windows 11 Home 64-Bit OEM',
+      price: 14500,
+      image: '/assets/images/no_image.png',
+      alt: 'Windows 11',
+      specs: { type: 'OS License' },
+      brand: 'Microsoft',
+    },
   ],
   mouse: [
-    { id: 'mouse-1', name: 'Logitech G Pro X Superlight Wireless Gaming Mouse', price: 14200, image: '/assets/images/no_image.png', alt: 'Mouse', specs: { sensor: 'HERO 25K', weight: '63g' }, brand: 'Logitech' },
-    { id: 'mouse-2', name: 'Razer DeathAdder V3 Ergonomic Esports Mouse', price: 8500, image: '/assets/images/no_image.png', alt: 'Mouse', specs: { sensor: 'Focus Pro', weight: '59g' }, brand: 'Razer' },
+    {
+      id: 'mouse-1',
+      name: 'Logitech G Pro X Superlight Wireless Gaming Mouse',
+      price: 14200,
+      image: '/assets/images/no_image.png',
+      alt: 'Mouse',
+      specs: { sensor: 'HERO 25K', weight: '63g' },
+      brand: 'Logitech',
+    },
+    {
+      id: 'mouse-2',
+      name: 'Razer DeathAdder V3 Ergonomic Esports Mouse',
+      price: 8500,
+      image: '/assets/images/no_image.png',
+      alt: 'Mouse',
+      specs: { sensor: 'Focus Pro', weight: '59g' },
+      brand: 'Razer',
+    },
   ],
   keyboard: [
-    { id: 'kb-1', name: 'Corsair K70 RGB PRO Mechanical Gaming Keyboard', price: 16500, image: '/assets/images/no_image.png', alt: 'Keyboard', specs: { switch: 'Cherry MX Red' }, brand: 'Corsair' },
+    {
+      id: 'kb-1',
+      name: 'Corsair K70 RGB PRO Mechanical Gaming Keyboard',
+      price: 16500,
+      image: '/assets/images/no_image.png',
+      alt: 'Keyboard',
+      specs: { switch: 'Cherry MX Red' },
+      brand: 'Corsair',
+    },
   ],
   headphone: [
-    { id: 'hp-1', name: 'HyperX Cloud II Wireless Gaming Headset', price: 15500, image: '/assets/images/no_image.png', alt: 'Headset', specs: { surround: '7.1 Virtual', battery: '30 Hrs' }, brand: 'HyperX' },
+    {
+      id: 'hp-1',
+      name: 'HyperX Cloud II Wireless Gaming Headset',
+      price: 15500,
+      image: '/assets/images/no_image.png',
+      alt: 'Headset',
+      specs: { surround: '7.1 Virtual', battery: '30 Hrs' },
+      brand: 'HyperX',
+    },
   ],
 };
 
@@ -107,7 +179,9 @@ function getCompatibility(build: BuildState): { compatible: boolean; issues: str
 
   if (cpu && motherboard) {
     if ((cpu.specs.socket as string) !== (motherboard.specs.socket as string)) {
-      issues.push(`CPU socket (${cpu.specs.socket}) ≠ Motherboard socket (${motherboard.specs.socket})`);
+      issues.push(
+        `CPU socket (${cpu.specs.socket}) ≠ Motherboard socket (${motherboard.specs.socket})`
+      );
     }
   }
   if (cpu && ram) {
@@ -117,7 +191,9 @@ function getCompatibility(build: BuildState): { compatible: boolean; issues: str
   }
   if (motherboard && ram) {
     if ((motherboard.specs.ramType as string) !== (ram.specs.ramType as string)) {
-      issues.push(`Motherboard supports ${motherboard.specs.ramType} but RAM is ${ram.specs.ramType}`);
+      issues.push(
+        `Motherboard supports ${motherboard.specs.ramType} but RAM is ${ram.specs.ramType}`
+      );
     }
   }
   if (gpu && pcCase) {
@@ -150,7 +226,8 @@ export default function PCBuilderClient() {
   const totalPrice = Object.values(build).reduce((sum, c) => sum + (c?.price || 0), 0);
   const totalTdp = getTotalTdp(build);
   const psuWattage = getPsuWattage(build);
-  const wattagePercent = psuWattage > 0 ? Math.min(100, Math.round((totalTdp / psuWattage) * 100)) : 0;
+  const wattagePercent =
+    psuWattage > 0 ? Math.min(100, Math.round((totalTdp / psuWattage) * 100)) : 0;
   const wattageStatus = wattagePercent > 90 ? 'danger' : wattagePercent > 75 ? 'warning' : 'ok';
   const { compatible, issues } = getCompatibility(build);
   const filledCount = Object.keys(build).length;
@@ -198,7 +275,9 @@ export default function PCBuilderClient() {
       {/* Top Header Bar inside Builder Container (TECHLAND style) */}
       <div className="bg-surface border border-border rounded-2xl p-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
         <div>
-          <h1 className="font-display font-bold text-xl sm:text-2xl text-foreground">PC Builder - Build Your Own PC</h1>
+          <h1 className="font-display font-bold text-xl sm:text-2xl text-foreground">
+            PC Builder - Build Your Own PC
+          </h1>
           <label className="inline-flex items-center gap-2 text-xs text-muted-foreground mt-1 cursor-pointer">
             <input
               type="checkbox"
@@ -254,7 +333,9 @@ export default function PCBuilderClient() {
             <span className="font-display font-bold text-sm sm:text-lg text-accent tabular-nums block leading-tight">
               {formatPrice(totalPrice)}
             </span>
-            <span className="text-[10px] text-muted-foreground font-medium">{filledCount} Items</span>
+            <span className="text-[10px] text-muted-foreground font-medium">
+              {filledCount} Items
+            </span>
           </div>
         </div>
       </div>
@@ -289,28 +370,48 @@ export default function PCBuilderClient() {
                           {/* Slot icon */}
                           <div
                             className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                              selected ? 'bg-accent/10 border border-accent/30' : 'bg-elevated border border-border'
+                              selected
+                                ? 'bg-accent/10 border border-accent/30'
+                                : 'bg-elevated border border-border'
                             }`}
                           >
-                            <Icon name={slot.icon as 'CpuIcon'} size={20} className={selected ? 'text-accent' : 'text-muted-foreground'} />
+                            <Icon
+                              name={slot.icon as 'CpuIcon'}
+                              size={20}
+                              className={selected ? 'text-accent' : 'text-muted-foreground'}
+                            />
                           </div>
 
                           {/* Slot info */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-0.5">
-                              <span className="text-xs font-semibold text-foreground">{slot.label}</span>
+                              <span className="text-xs font-semibold text-foreground">
+                                {slot.label}
+                              </span>
                               {slot.required && (
-                                <span className="px-1.5 py-0.2 rounded bg-danger/20 text-danger text-[9px] font-bold">Required</span>
+                                <span className="px-1.5 py-0.2 rounded bg-danger/20 text-danger text-[9px] font-bold">
+                                  Required
+                                </span>
                               )}
                             </div>
                             {selected ? (
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-lg overflow-hidden bg-elevated shrink-0">
-                                  <AppImage src={selected.image} alt={selected.alt} width={32} height={32} className="object-cover w-full h-full" />
+                                  <AppImage
+                                    src={selected.image}
+                                    alt={selected.alt}
+                                    width={32}
+                                    height={32}
+                                    className="object-cover w-full h-full"
+                                  />
                                 </div>
                                 <div className="min-w-0">
-                                  <p className="font-display font-semibold text-xs sm:text-sm text-foreground line-clamp-1">{selected.name}</p>
-                                  <p className="text-xs text-accent font-bold tabular-nums">{formatPrice(selected.price)}</p>
+                                  <p className="font-display font-semibold text-xs sm:text-sm text-foreground line-clamp-1">
+                                    {selected.name}
+                                  </p>
+                                  <p className="text-xs text-accent font-bold tabular-nums">
+                                    {formatPrice(selected.price)}
+                                  </p>
                                 </div>
                               </div>
                             ) : (
@@ -355,32 +456,144 @@ export default function PCBuilderClient() {
           {/* SVG Case Illustration */}
           <div className="bg-surface border border-border rounded-2xl p-6 flex flex-col items-center">
             <div className="relative w-32 h-44 mb-4">
-              <svg viewBox="0 0 128 176" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <rect x="8" y="8" width="112" height="160" rx="8" stroke="var(--border)" strokeWidth="2" fill="var(--elevated)" />
-                <rect x="16" y="20" width="32" height="20" rx="3" stroke="var(--border)" strokeWidth="1.5" fill="var(--background)" />
-                <circle cx="112" cy="28" r="6" stroke="var(--border)" strokeWidth="1.5" fill={filledCount >= 6 ? 'var(--accent)' : 'var(--background)'} />
-                {[0,1,2].map((i) => (
-                  <rect key={i} x="16" y={50 + i * 18} width="32" height="12" rx="2"
-                    stroke="var(--border)" strokeWidth="1"
+              <svg
+                viewBox="0 0 128 176"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-full"
+              >
+                <rect
+                  x="8"
+                  y="8"
+                  width="112"
+                  height="160"
+                  rx="8"
+                  stroke="var(--border)"
+                  strokeWidth="2"
+                  fill="var(--elevated)"
+                />
+                <rect
+                  x="16"
+                  y="20"
+                  width="32"
+                  height="20"
+                  rx="3"
+                  stroke="var(--border)"
+                  strokeWidth="1.5"
+                  fill="var(--background)"
+                />
+                <circle
+                  cx="112"
+                  cy="28"
+                  r="6"
+                  stroke="var(--border)"
+                  strokeWidth="1.5"
+                  fill={filledCount >= 6 ? 'var(--accent)' : 'var(--background)'}
+                />
+                {[0, 1, 2].map((i) => (
+                  <rect
+                    key={i}
+                    x="16"
+                    y={50 + i * 18}
+                    width="32"
+                    height="12"
+                    rx="2"
+                    stroke="var(--border)"
+                    strokeWidth="1"
                     fill={i === 0 && build.storage ? 'var(--accent)' : 'var(--background)'}
                     opacity={i === 0 && build.storage ? 1 : 0.4}
                   />
                 ))}
-                <rect x="56" y="20" width="60" height="100" rx="4" stroke="var(--border)" strokeWidth="1.5"
+                <rect
+                  x="56"
+                  y="20"
+                  width="60"
+                  height="100"
+                  rx="4"
+                  stroke="var(--border)"
+                  strokeWidth="1.5"
                   fill={build.motherboard ? 'rgba(0,229,160,0.05)' : 'var(--background)'}
                   strokeDasharray={build.motherboard ? '0' : '4 2'}
                 />
-                {build.cpu && <rect x="64" y="28" width="24" height="24" rx="2" fill="var(--accent)" opacity="0.6" />}
-                {build.gpu && <rect x="58" y="62" width="50" height="16" rx="2" fill="var(--accent)" opacity="0.5" />}
+                {build.cpu && (
+                  <rect
+                    x="64"
+                    y="28"
+                    width="24"
+                    height="24"
+                    rx="2"
+                    fill="var(--accent)"
+                    opacity="0.6"
+                  />
+                )}
+                {build.gpu && (
+                  <rect
+                    x="58"
+                    y="62"
+                    width="50"
+                    height="16"
+                    rx="2"
+                    fill="var(--accent)"
+                    opacity="0.5"
+                  />
+                )}
                 {build.ram && (
                   <>
-                    <rect x="92" y="28" width="6" height="30" rx="1" fill="var(--accent)" opacity="0.7" />
-                    <rect x="101" y="28" width="6" height="30" rx="1" fill="var(--accent)" opacity="0.7" />
+                    <rect
+                      x="92"
+                      y="28"
+                      width="6"
+                      height="30"
+                      rx="1"
+                      fill="var(--accent)"
+                      opacity="0.7"
+                    />
+                    <rect
+                      x="101"
+                      y="28"
+                      width="6"
+                      height="30"
+                      rx="1"
+                      fill="var(--accent)"
+                      opacity="0.7"
+                    />
                   </>
                 )}
-                {build.psu && <rect x="16" y="130" width="96" height="30" rx="3" fill="var(--accent)" opacity="0.3" />}
-                {build.cooler && <circle cx="76" cy="40" r="10" stroke="var(--accent)" strokeWidth="1.5" fill="none" opacity="0.6" />}
-                {filledCount >= 6 && <rect x="8" y="8" width="112" height="160" rx="8" stroke="var(--accent)" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />}
+                {build.psu && (
+                  <rect
+                    x="16"
+                    y="130"
+                    width="96"
+                    height="30"
+                    rx="3"
+                    fill="var(--accent)"
+                    opacity="0.3"
+                  />
+                )}
+                {build.cooler && (
+                  <circle
+                    cx="76"
+                    cy="40"
+                    r="10"
+                    stroke="var(--accent)"
+                    strokeWidth="1.5"
+                    fill="none"
+                    opacity="0.6"
+                  />
+                )}
+                {filledCount >= 6 && (
+                  <rect
+                    x="8"
+                    y="8"
+                    width="112"
+                    height="160"
+                    rx="8"
+                    stroke="var(--accent)"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.4"
+                    fill="none"
+                  />
+                )}
               </svg>
               <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-display font-bold text-sm">
                 {filledCount}
@@ -393,11 +606,20 @@ export default function PCBuilderClient() {
           <div className="bg-surface border border-border rounded-2xl p-5 space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-semibold text-sm text-foreground">Power Draw</h3>
-              <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                wattageStatus === 'danger' ? 'bg-danger/20 text-danger' :
-                wattageStatus === 'warning'? 'bg-warning/20 text-warning' : 'bg-accent/10 text-accent'
-              }`}>
-                {wattageStatus === 'ok' ? 'Good' : wattageStatus === 'warning' ? 'High' : 'Overload!'}
+              <span
+                className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                  wattageStatus === 'danger'
+                    ? 'bg-danger/20 text-danger'
+                    : wattageStatus === 'warning'
+                      ? 'bg-warning/20 text-warning'
+                      : 'bg-accent/10 text-accent'
+                }`}
+              >
+                {wattageStatus === 'ok'
+                  ? 'Good'
+                  : wattageStatus === 'warning'
+                    ? 'High'
+                    : 'Overload!'}
               </span>
             </div>
             <div className="wattage-track">
@@ -405,13 +627,26 @@ export default function PCBuilderClient() {
                 className="wattage-fill"
                 style={{
                   width: `${wattagePercent}%`,
-                  background: wattageStatus === 'danger' ? 'var(--danger)' : wattageStatus === 'warning' ? 'var(--warning)' : 'var(--accent)',
+                  background:
+                    wattageStatus === 'danger'
+                      ? 'var(--danger)'
+                      : wattageStatus === 'warning'
+                        ? 'var(--warning)'
+                        : 'var(--accent)',
                 }}
               />
             </div>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Est. draw: <span className="text-foreground font-medium tabular-nums">{totalTdp}W</span></span>
-              <span>PSU: <span className="text-foreground font-medium tabular-nums">{psuWattage > 0 ? `${psuWattage}W` : '—'}</span></span>
+              <span>
+                Est. draw:{' '}
+                <span className="text-foreground font-medium tabular-nums">{totalTdp}W</span>
+              </span>
+              <span>
+                PSU:{' '}
+                <span className="text-foreground font-medium tabular-nums">
+                  {psuWattage > 0 ? `${psuWattage}W` : '—'}
+                </span>
+              </span>
               <span className="font-medium tabular-nums">{wattagePercent}%</span>
             </div>
           </div>
@@ -419,9 +654,15 @@ export default function PCBuilderClient() {
           {/* Compatibility */}
           <div className="bg-surface border border-border rounded-2xl p-5 space-y-3">
             <div className="flex items-center gap-2">
-              <Icon name={compatible ? 'CheckCircleIcon' : 'AlertCircleIcon'} size={18} className={compatible ? 'text-accent' : 'text-danger'} />
+              <Icon
+                name={compatible ? 'CheckCircleIcon' : 'AlertCircleIcon'}
+                size={18}
+                className={compatible ? 'text-accent' : 'text-danger'}
+              />
               <h3 className="font-display font-semibold text-sm text-foreground">Compatibility</h3>
-              <span className={`ml-auto text-xs font-medium px-2 py-0.5 rounded-full ${compatible ? 'bg-accent/10 text-accent' : 'bg-danger/10 text-danger'}`}>
+              <span
+                className={`ml-auto text-xs font-medium px-2 py-0.5 rounded-full ${compatible ? 'bg-accent/10 text-accent' : 'bg-danger/10 text-danger'}`}
+              >
                 {compatible ? 'All Good' : `${issues.length} Issue${issues.length > 1 ? 's' : ''}`}
               </span>
             </div>
@@ -435,7 +676,9 @@ export default function PCBuilderClient() {
                 ))}
               </ul>
             ) : (
-              <p className="text-xs text-muted-foreground">All selected components are compatible.</p>
+              <p className="text-xs text-muted-foreground">
+                All selected components are compatible.
+              </p>
             )}
           </div>
 
@@ -446,28 +689,61 @@ export default function PCBuilderClient() {
                 <Icon name="GamepadIcon" size={16} className="text-accent" />
                 Est. Gaming FPS
               </h3>
-              <span className="text-[10px] bg-accent/10 border border-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">Live Calc</span>
+              <span className="text-[10px] bg-accent/10 border border-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">
+                Live Calc
+              </span>
             </div>
 
             {build.cpu || build.gpu ? (
               <div className="space-y-2">
                 {[
-                  { game: 'Valorant', fps: Math.round(((build.gpu?.price || 20000) / 400 + (build.cpu?.price || 15000) / 300)), res: '1080p Ultra' },
-                  { game: 'PUBG PC', fps: Math.round(((build.gpu?.price || 20000) / 600 + (build.cpu?.price || 15000) / 500)), res: '1080p High' },
-                  { game: 'GTA V', fps: Math.round(((build.gpu?.price || 20000) / 500 + (build.cpu?.price || 15000) / 450)), res: '1080p Very High' },
-                  { game: 'Cyberpunk 2077', fps: Math.round(((build.gpu?.price || 20000) / 1100 + (build.cpu?.price || 15000) / 900)), res: '1080p High' },
+                  {
+                    game: 'Valorant',
+                    fps: Math.round(
+                      (build.gpu?.price || 20000) / 400 + (build.cpu?.price || 15000) / 300
+                    ),
+                    res: '1080p Ultra',
+                  },
+                  {
+                    game: 'PUBG PC',
+                    fps: Math.round(
+                      (build.gpu?.price || 20000) / 600 + (build.cpu?.price || 15000) / 500
+                    ),
+                    res: '1080p High',
+                  },
+                  {
+                    game: 'GTA V',
+                    fps: Math.round(
+                      (build.gpu?.price || 20000) / 500 + (build.cpu?.price || 15000) / 450
+                    ),
+                    res: '1080p Very High',
+                  },
+                  {
+                    game: 'Cyberpunk 2077',
+                    fps: Math.round(
+                      (build.gpu?.price || 20000) / 1100 + (build.cpu?.price || 15000) / 900
+                    ),
+                    res: '1080p High',
+                  },
                 ].map((g) => (
-                  <div key={g.game} className="flex items-center justify-between text-xs p-2 bg-elevated rounded-xl border border-border">
+                  <div
+                    key={g.game}
+                    className="flex items-center justify-between text-xs p-2 bg-elevated rounded-xl border border-border"
+                  >
                     <div>
                       <span className="font-semibold text-foreground">{g.game}</span>
                       <span className="text-[10px] text-muted-foreground block">{g.res}</span>
                     </div>
-                    <span className="font-display font-bold text-accent tabular-nums">~{g.fps} FPS</span>
+                    <span className="font-display font-bold text-accent tabular-nums">
+                      ~{g.fps} FPS
+                    </span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-xs text-muted-foreground">Select CPU & GPU to see FPS benchmarks.</p>
+              <p className="text-xs text-muted-foreground">
+                Select CPU & GPU to see FPS benchmarks.
+              </p>
             )}
           </div>
         </div>
@@ -477,14 +753,17 @@ export default function PCBuilderClient() {
       {activeModal && (
         <div
           className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-md flex items-end sm:items-center justify-center p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setActiveModal(null); }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setActiveModal(null);
+          }}
         >
           <div className="w-full max-w-2xl bg-surface border border-border rounded-2xl overflow-hidden max-h-[80vh] flex flex-col animate-slide-up sm:animate-fade-up">
             <div className="flex items-center justify-between px-5 py-4 border-b border-border">
-              <h3 className="font-display font-semibold text-foreground">
-                Choose Component
-              </h3>
-              <button onClick={() => setActiveModal(null)} className="p-1.5 rounded-lg hover:bg-elevated text-muted-foreground">
+              <h3 className="font-display font-semibold text-foreground">Choose Component</h3>
+              <button
+                onClick={() => setActiveModal(null)}
+                className="p-1.5 rounded-lg hover:bg-elevated text-muted-foreground"
+              >
                 <Icon name="XIcon" size={18} />
               </button>
             </div>
@@ -495,24 +774,40 @@ export default function PCBuilderClient() {
                   onClick={() => handleSelect(activeModal, component)}
                   className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all text-left ${
                     build[activeModal]?.id === component.id
-                      ? 'border-accent/50 bg-accent/5' : 'border-border bg-elevated hover:border-accent/30'
+                      ? 'border-accent/50 bg-accent/5'
+                      : 'border-border bg-elevated hover:border-accent/30'
                   }`}
                 >
                   <div className="w-14 h-14 rounded-xl overflow-hidden bg-surface shrink-0">
-                    <AppImage src={component.image} alt={component.alt} width={56} height={56} className="object-cover w-full h-full" />
+                    <AppImage
+                      src={component.image}
+                      alt={component.alt}
+                      width={56}
+                      height={56}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-display font-semibold text-sm text-foreground mb-1 line-clamp-1">{component.name}</p>
+                    <p className="font-display font-semibold text-sm text-foreground mb-1 line-clamp-1">
+                      {component.name}
+                    </p>
                     <div className="flex flex-wrap gap-1">
-                      {Object.entries(component.specs).slice(0, 3).map(([k, v]) => (
-                        <span key={k} className="px-2 py-0.5 rounded-md bg-surface border border-border text-[10px] text-muted-foreground">
-                          {String(v)}
-                        </span>
-                      ))}
+                      {Object.entries(component.specs)
+                        .slice(0, 3)
+                        .map(([k, v]) => (
+                          <span
+                            key={k}
+                            className="px-2 py-0.5 rounded-md bg-surface border border-border text-[10px] text-muted-foreground"
+                          >
+                            {String(v)}
+                          </span>
+                        ))}
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="font-display font-bold text-base text-accent tabular-nums">{formatPrice(component.price)}</p>
+                    <p className="font-display font-bold text-base text-accent tabular-nums">
+                      {formatPrice(component.price)}
+                    </p>
                     {build[activeModal]?.id === component.id && (
                       <span className="text-[10px] text-accent">Selected</span>
                     )}

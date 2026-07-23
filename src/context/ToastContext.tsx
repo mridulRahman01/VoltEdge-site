@@ -31,16 +31,19 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
-  const showToast = useCallback((message: string, type: ToastType = 'success', title?: string) => {
-    const id = Math.random().toString(36).substring(2, 9);
-    const newToast: ToastItem = { id, message, title, type };
-    setToasts((prev) => [...prev.slice(-3), newToast]); // keep max 4 toasts
+  const showToast = useCallback(
+    (message: string, type: ToastType = 'success', title?: string) => {
+      const id = Math.random().toString(36).substring(2, 9);
+      const newToast: ToastItem = { id, message, title, type };
+      setToasts((prev) => [...prev.slice(-3), newToast]); // keep max 4 toasts
 
-    // Auto dismiss after 3.5 seconds
-    setTimeout(() => {
-      removeToast(id);
-    }, 3500);
-  }, [removeToast]);
+      // Auto dismiss after 3.5 seconds
+      setTimeout(() => {
+        removeToast(id);
+      }, 3500);
+    },
+    [removeToast]
+  );
 
   const toast = {
     success: (msg: string, title?: string) => showToast(msg, 'success', title || 'Success'),
@@ -57,10 +60,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       <div className="fixed top-16 sm:top-20 right-3 sm:right-4 left-3 sm:left-auto z-[9999] flex flex-col gap-2.5 max-w-sm sm:w-full pointer-events-none">
         {toasts.map((t) => {
           const typeStyles = {
-            success: 'bg-surface/95 border-emerald-500/40 text-emerald-400 shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
+            success:
+              'bg-surface/95 border-emerald-500/40 text-emerald-400 shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
             error: 'bg-surface/95 border-danger/40 text-danger shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
             info: 'bg-surface/95 border-accent/40 text-accent shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
-            warning: 'bg-surface/95 border-amber-500/40 text-amber-400 shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
+            warning:
+              'bg-surface/95 border-amber-500/40 text-amber-400 shadow-[0_8px_30px_rgb(0,0,0,0.4)]',
           }[t.type];
 
           const iconName = {

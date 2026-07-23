@@ -46,7 +46,10 @@ export default function CategoryFilters() {
         <h2 className="font-display font-semibold text-foreground">Filters</h2>
         {totalActive > 0 && (
           <button
-            onClick={() => { setSelected({}); setPriceRange(null); }}
+            onClick={() => {
+              setSelected({});
+              setPriceRange(null);
+            }}
             className="text-xs text-accent hover:text-accent/80 transition-colors font-medium"
           >
             Clear all ({totalActive})
@@ -64,11 +67,16 @@ export default function CategoryFilters() {
               onClick={() => setPriceRange(priceRange === i ? null : i)}
               className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-left text-sm transition-all ${
                 priceRange === i
-                  ? 'bg-accent/10 border border-accent/30 text-accent' :'text-muted-foreground hover:text-foreground hover:bg-elevated'
+                  ? 'bg-accent/10 border border-accent/30 text-accent'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-elevated'
               }`}
             >
-              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${priceRange === i ? 'border-accent bg-accent' : 'border-border'}`}>
-                {priceRange === i && <Icon name="CheckIcon" size={10} className="text-accent-foreground" />}
+              <div
+                className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${priceRange === i ? 'border-accent bg-accent' : 'border-border'}`}
+              >
+                {priceRange === i && (
+                  <Icon name="CheckIcon" size={10} className="text-accent-foreground" />
+                )}
               </div>
               {range.label}
             </button>
@@ -78,12 +86,17 @@ export default function CategoryFilters() {
 
       {/* Other filter sections */}
       {FILTER_SECTIONS.map((section) => (
-        <div key={section.key} className="bg-surface border border-border rounded-2xl overflow-hidden">
+        <div
+          key={section.key}
+          className="bg-surface border border-border rounded-2xl overflow-hidden"
+        >
           <button
             className="w-full flex items-center justify-between px-4 py-3.5"
             onClick={() => setExpanded((prev) => ({ ...prev, [section.key]: !prev[section.key] }))}
           >
-            <span className="font-display font-semibold text-sm text-foreground">{section.title}</span>
+            <span className="font-display font-semibold text-sm text-foreground">
+              {section.title}
+            </span>
             <Icon
               name={expanded[section.key] ? 'ChevronUpIcon' : 'ChevronDownIcon'}
               size={16}
@@ -102,8 +115,12 @@ export default function CategoryFilters() {
                       isSelected ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
-                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'border-accent bg-accent' : 'border-border'}`}>
-                      {isSelected && <Icon name="CheckIcon" size={10} className="text-accent-foreground" />}
+                    <div
+                      className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'border-accent bg-accent' : 'border-border'}`}
+                    >
+                      {isSelected && (
+                        <Icon name="CheckIcon" size={10} className="text-accent-foreground" />
+                      )}
                     </div>
                     {opt}
                   </button>

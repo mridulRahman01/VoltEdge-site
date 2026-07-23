@@ -38,7 +38,9 @@ export default function TrustBar() {
                 <Icon name={item.icon as 'ShieldCheckIcon'} size={22} className="text-accent" />
               </div>
               <div>
-                <h3 className="font-display font-semibold text-sm text-foreground mb-0.5">{item.title}</h3>
+                <h3 className="font-display font-semibold text-sm text-foreground mb-0.5">
+                  {item.title}
+                </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
             </div>

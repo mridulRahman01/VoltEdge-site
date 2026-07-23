@@ -14,17 +14,22 @@ export default function FeaturedGrid() {
     return () => clearTimeout(t);
   }, []);
 
-  const featured = PRODUCTS?.filter(p => p?.isFeatured)?.slice(0, 8);
+  const featured = PRODUCTS?.filter((p) => p?.isFeatured)?.slice(0, 8);
 
   return (
     <section className="py-12 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="font-display font-bold text-2xl text-foreground tracking-tight mb-1">Featured Products</h2>
+            <h2 className="font-display font-bold text-2xl text-foreground tracking-tight mb-1">
+              Featured Products
+            </h2>
             <p className="text-sm text-muted-foreground">Hand-picked by our tech experts</p>
           </div>
-          <Link href="/category" className="text-sm font-medium text-accent hover:text-accent/80 transition-colors flex items-center gap-1 border border-accent/30 rounded-xl px-4 py-2.5 min-h-[44px] hover:bg-accent/10 touch-manipulation">
+          <Link
+            href="/category"
+            className="text-sm font-medium text-accent hover:text-accent/80 transition-colors flex items-center gap-1 border border-accent/30 rounded-xl px-4 py-2.5 min-h-[44px] hover:bg-accent/10 touch-manipulation"
+          >
             View All →
           </Link>
         </div>

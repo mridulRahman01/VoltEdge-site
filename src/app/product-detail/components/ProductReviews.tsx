@@ -4,9 +4,36 @@ import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 const REVIEWS = [
-  { id: 1, name: 'Tanvir Ahmed', city: 'Dhaka', rating: 5, date: 'Jan 15, 2026', title: 'Absolute beast for gaming', body: 'Bought this for competitive gaming and it absolutely destroys every title at max settings. The 240Hz display is buttery smooth. Thermals are well managed with the triple-fan setup. Build quality feels premium.', verified: true },
-  { id: 2, name: 'Sadia Islam', city:'Chittagong', rating: 4, date: 'Jan 8, 2026', title: 'Great performance, runs hot under load', body: 'Performance is incredible for the price. Gaming at 1600p with max settings is flawless. Only complaint is it gets quite warm during extended sessions — recommend a cooling pad. Display colors are vivid and accurate.', verified: true },
-  { id: 3, name: 'Rakibul Hasan', city: 'Sylhet', rating: 5, date: 'Dec 28, 2025', title: 'Worth every taka', body: 'After comparing with Dell Alienware and Lenovo Legion, this ROG wins on value. The build quality is exceptional and ASUS service center in Sylhet was helpful. Delivery from VoltEdge was fast — arrived next day.', verified: false },
+  {
+    id: 1,
+    name: 'Tanvir Ahmed',
+    city: 'Dhaka',
+    rating: 5,
+    date: 'Jan 15, 2026',
+    title: 'Absolute beast for gaming',
+    body: 'Bought this for competitive gaming and it absolutely destroys every title at max settings. The 240Hz display is buttery smooth. Thermals are well managed with the triple-fan setup. Build quality feels premium.',
+    verified: true,
+  },
+  {
+    id: 2,
+    name: 'Sadia Islam',
+    city: 'Chittagong',
+    rating: 4,
+    date: 'Jan 8, 2026',
+    title: 'Great performance, runs hot under load',
+    body: 'Performance is incredible for the price. Gaming at 1600p with max settings is flawless. Only complaint is it gets quite warm during extended sessions — recommend a cooling pad. Display colors are vivid and accurate.',
+    verified: true,
+  },
+  {
+    id: 3,
+    name: 'Rakibul Hasan',
+    city: 'Sylhet',
+    rating: 5,
+    date: 'Dec 28, 2025',
+    title: 'Worth every taka',
+    body: 'After comparing with Dell Alienware and Lenovo Legion, this ROG wins on value. The build quality is exceptional and ASUS service center in Sylhet was helpful. Delivery from VoltEdge was fast — arrived next day.',
+    verified: false,
+  },
 ];
 
 const RATING_DIST = [
@@ -25,14 +52,16 @@ export default function ProductReviews() {
 
   return (
     <div id="reviews" className="mb-16">
-      <h2 className="font-display font-bold text-xl text-foreground mb-6 tracking-tight">Customer Reviews</h2>
+      <h2 className="font-display font-bold text-xl text-foreground mb-6 tracking-tight">
+        Customer Reviews
+      </h2>
       {/* Summary */}
       <div className="grid md:grid-cols-2 gap-6 mb-8 p-6 bg-surface border border-border rounded-2xl">
         <div className="flex items-center gap-6">
           <div className="text-center">
             <span className="font-display font-bold text-6xl text-accent">4.8</span>
             <div className="flex justify-center mt-1">
-              {[1,2,3,4,5]?.map((s) => (
+              {[1, 2, 3, 4, 5]?.map((s) => (
                 <Icon key={s} name="StarIcon" size={16} className="text-warning" variant="solid" />
               ))}
             </div>
@@ -66,21 +95,35 @@ export default function ProductReviews() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-display font-semibold text-sm text-foreground">{review?.name}</span>
+                    <span className="font-display font-semibold text-sm text-foreground">
+                      {review?.name}
+                    </span>
                     {review?.verified && (
-                      <span className="px-2 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-medium">Verified</span>
+                      <span className="px-2 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-medium">
+                        Verified
+                      </span>
                     )}
                   </div>
-                  <span className="text-xs text-muted-foreground">{review?.city} · {review?.date}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {review?.city} · {review?.date}
+                  </span>
                 </div>
               </div>
               <div className="flex shrink-0">
-                {[1,2,3,4,5]?.map((s) => (
-                  <Icon key={s} name="StarIcon" size={14} className={s <= review?.rating ? 'text-warning' : 'text-border'} variant="solid" />
+                {[1, 2, 3, 4, 5]?.map((s) => (
+                  <Icon
+                    key={s}
+                    name="StarIcon"
+                    size={14}
+                    className={s <= review?.rating ? 'text-warning' : 'text-border'}
+                    variant="solid"
+                  />
                 ))}
               </div>
             </div>
-            <h4 className="font-display font-semibold text-sm text-foreground mb-2">{review?.title}</h4>
+            <h4 className="font-display font-semibold text-sm text-foreground mb-2">
+              {review?.title}
+            </h4>
             <p className="text-sm text-muted-foreground leading-relaxed">{review?.body}</p>
           </div>
         ))}
@@ -100,7 +143,7 @@ export default function ProductReviews() {
           <div>
             <p className="text-sm text-muted-foreground mb-2">Your Rating</p>
             <div className="flex gap-1">
-              {[1,2,3,4,5]?.map((s) => (
+              {[1, 2, 3, 4, 5]?.map((s) => (
                 <button
                   key={s}
                   onMouseEnter={() => setHoverRating(s)}
@@ -109,7 +152,14 @@ export default function ProductReviews() {
                   className="p-1"
                   aria-label={`Rate ${s} stars`}
                 >
-                  <Icon name="StarIcon" size={24} className={s <= (hoverRating || selectedRating) ? 'text-warning' : 'text-border'} variant="solid" />
+                  <Icon
+                    name="StarIcon"
+                    size={24}
+                    className={
+                      s <= (hoverRating || selectedRating) ? 'text-warning' : 'text-border'
+                    }
+                    variant="solid"
+                  />
                 </button>
               ))}
             </div>
@@ -128,7 +178,10 @@ export default function ProductReviews() {
             <button className="px-6 py-2.5 rounded-xl bg-accent text-accent-foreground font-display font-semibold text-sm hover:glow-accent-sm transition-all">
               Submit Review
             </button>
-            <button onClick={() => setShowForm(false)} className="px-6 py-2.5 rounded-xl bg-elevated border border-border text-muted-foreground font-display font-semibold text-sm hover:text-foreground transition-all">
+            <button
+              onClick={() => setShowForm(false)}
+              className="px-6 py-2.5 rounded-xl bg-elevated border border-border text-muted-foreground font-display font-semibold text-sm hover:text-foreground transition-all"
+            >
               Cancel
             </button>
           </div>

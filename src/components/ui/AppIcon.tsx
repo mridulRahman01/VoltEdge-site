@@ -1,7 +1,116 @@
 'use client';
 
 import React from 'react';
-import { Search, ShoppingCart, Heart, User, Menu, X, Home, Cpu, ArrowRight, Package, ChevronRight, Star, Shield, CreditCard, Truck, RefreshCw, Calculator, Laptop, Zap, HardDrive, Monitor, Wind, Box, CircuitBoard, MemoryStick, Check, MapPin, Eye, EyeOff, GitCompare, ChevronDown, ChevronUp, Trash2, Plus, Minus, Share2, Save, AlertTriangle, Info, TrendingUp, Award, Clock, Tag, Percent, Bell, Settings, LogOut, LogIn, UserPlus, Sun, Moon, Palette, Filter, SlidersHorizontal, Grid, List, ArrowLeft, ExternalLink, Copy, Download, Upload, BarChart2, PieChart, Activity, Globe, Phone, Mail, MessageSquare, ShieldCheck, Headphones, Wifi, Camera, Gamepad2, Printer, Lock, Unlock, RotateCcw, RefreshCcw, Loader2, ChevronLeft, MoreHorizontal, Bookmark, Edit, Send, Calendar, Navigation, Building, Store, Package2, Image, Video, File, FileText, Folder, Database, Server, Cloud, Bluetooth, Keyboard, Mouse, Speaker, Mic, Volume2, Power, Tv, Smartphone, Tablet, type LucideIcon } from 'lucide-react';
+import {
+  Search,
+  ShoppingCart,
+  Heart,
+  User,
+  Menu,
+  X,
+  Home,
+  Cpu,
+  ArrowRight,
+  Package,
+  ChevronRight,
+  Star,
+  Shield,
+  CreditCard,
+  Truck,
+  RefreshCw,
+  Calculator,
+  Laptop,
+  Zap,
+  HardDrive,
+  Monitor,
+  Wind,
+  Box,
+  CircuitBoard,
+  MemoryStick,
+  Check,
+  MapPin,
+  Eye,
+  EyeOff,
+  GitCompare,
+  ChevronDown,
+  ChevronUp,
+  Trash2,
+  Plus,
+  Minus,
+  Share2,
+  Save,
+  AlertTriangle,
+  Info,
+  TrendingUp,
+  Award,
+  Clock,
+  Tag,
+  Percent,
+  Bell,
+  Settings,
+  LogOut,
+  LogIn,
+  UserPlus,
+  Sun,
+  Moon,
+  Palette,
+  Filter,
+  SlidersHorizontal,
+  Grid,
+  List,
+  ArrowLeft,
+  ExternalLink,
+  Copy,
+  Download,
+  Upload,
+  BarChart2,
+  PieChart,
+  Activity,
+  Globe,
+  Phone,
+  Mail,
+  MessageSquare,
+  ShieldCheck,
+  Headphones,
+  Wifi,
+  Camera,
+  Gamepad2,
+  Printer,
+  Lock,
+  Unlock,
+  RotateCcw,
+  RefreshCcw,
+  Loader2,
+  ChevronLeft,
+  MoreHorizontal,
+  Bookmark,
+  Edit,
+  Send,
+  Calendar,
+  Navigation,
+  Building,
+  Store,
+  Package2,
+  Image,
+  Video,
+  File,
+  FileText,
+  Folder,
+  Database,
+  Server,
+  Cloud,
+  Bluetooth,
+  Keyboard,
+  Mouse,
+  Speaker,
+  Mic,
+  Volume2,
+  Power,
+  Tv,
+  Smartphone,
+  Tablet,
+  type LucideIcon,
+} from 'lucide-react';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   // Search & Navigation
@@ -14,14 +123,14 @@ const ICON_MAP: Record<string, LucideIcon> = {
   ChevronDownIcon: ChevronDown,
   ChevronUpIcon: ChevronUp,
   ExternalLinkIcon: ExternalLink,
-  
+
   // Shopping
   ShoppingCartIcon: ShoppingCart,
   HeartIcon: Heart,
   BookmarkIcon: Bookmark,
   TagIcon: Tag,
   PercentIcon: Percent,
-  
+
   // User & Auth
   UserIcon: User,
   LogInIcon: LogIn,
@@ -33,7 +142,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   EyeOffIcon: EyeOff,
   ShieldIcon: Shield,
   ShieldCheckIcon: ShieldCheck,
-  
+
   // UI Controls
   MenuIcon: Menu,
   XIcon: X,
@@ -44,12 +153,12 @@ const ICON_MAP: Record<string, LucideIcon> = {
   SlidersIcon: SlidersHorizontal,
   GridIcon: Grid,
   ListIcon: List,
-  
+
   // Theme
   SunIcon: Sun,
   MoonIcon: Moon,
   PaletteIcon: Palette,
-  
+
   // PC Components
   CpuIcon: Cpu,
   CircuitBoardIcon: CircuitBoard,
@@ -59,7 +168,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   ZapIcon: Zap,
   BoxIcon: Box,
   WindIcon: Wind,
-  
+
   // Products
   PackageIcon: Package,
   Package2Icon: Package2,
@@ -76,7 +185,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   SpeakerIcon: Speaker,
   WifiIcon: Wifi,
   BluetoothIcon: Bluetooth,
-  
+
   // Actions
   CheckIcon: Check,
   TrashIcon: Trash2,
@@ -87,7 +196,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   DownloadIcon: Download,
   UploadIcon: Upload,
   SendIcon: Send,
-  
+
   // Status & Info
   AlertTriangleIcon: AlertTriangle,
   InfoIcon: Info,
@@ -99,7 +208,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   RefreshCwIcon: RefreshCw,
   RefreshCcwIcon: RefreshCcw,
   RotateCcwIcon: RotateCcw,
-  
+
   // Commerce
   CreditCardIcon: CreditCard,
   TruckIcon: Truck,
@@ -107,13 +216,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
   MapPinIcon: MapPin,
   BuildingIcon: Building,
   StoreIcon: Store,
-  
+
   // Communication
   BellIcon: Bell,
   MailIcon: Mail,
   MessageSquareIcon: MessageSquare,
   PhoneIcon: Phone,
-  
+
   // Social
   FacebookIcon: Globe,
   TwitterIcon: Globe,
@@ -122,28 +231,28 @@ const ICON_MAP: Record<string, LucideIcon> = {
   LinkedinIcon: Globe,
   GithubIcon: Globe,
   GlobeIcon: Globe,
-  
+
   // Compare & Analytics
   GitCompareIcon: GitCompare,
   BarChart2Icon: BarChart2,
   PieChartIcon: PieChart,
-  
+
   // Settings
   SettingsIcon: Settings,
-  
+
   // Time
   ClockIcon: Clock,
   CalendarIcon: Calendar,
-  
+
   // Power
   PowerIcon: Power,
-  
+
   // Media
   VolumeIcon: Volume2,
   MicIcon: Mic,
   ImageIcon: Image,
   VideoIcon: Video,
-  
+
   // Files
   FileIcon: File,
   FileTextIcon: FileText,

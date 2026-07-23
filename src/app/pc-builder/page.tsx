@@ -25,7 +25,10 @@ export default function PCBuilderPage() {
         <div className="border-b border-border">
           <div className="max-w-[1400px] mx-auto px-4 py-4 sm:py-5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-              <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+              <Link
+                href="/"
+                className="hover:text-foreground transition-colors flex items-center gap-1"
+              >
                 <Icon name="HomeIcon" size={14} />
                 Home
               </Link>
@@ -34,12 +37,18 @@ export default function PCBuilderPage() {
             </div>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">PC Builder</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">Build your dream PC with real-time compatibility checks & Lumi AI Guide</p>
+                <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">
+                  PC Builder
+                </h1>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  Build your dream PC with real-time compatibility checks & Lumi AI Guide
+                </p>
               </div>
               <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20">
                 <span className="pulse-dot" />
-                <span className="text-accent text-xs font-semibold font-display">Live Compatibility</span>
+                <span className="text-accent text-xs font-semibold font-display">
+                  Live Compatibility
+                </span>
               </div>
             </div>
           </div>

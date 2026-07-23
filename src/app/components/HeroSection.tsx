@@ -49,7 +49,12 @@ const SLIDES = [
     headline: 'Custom Rig Offer',
     headlineAccent: 'Free World Cup Jersey',
     sub: 'Build any RTX 40 Series Custom PC Rig & receive a Free Official World Cup Jersey + Gaming Headset.',
-    specs: ['Free World Cup Jersey', 'FREE Assembly & Testing', '0% EMI Available', '3 Year Warranty'],
+    specs: [
+      'Free World Cup Jersey',
+      'FREE Assembly & Testing',
+      '0% EMI Available',
+      '3 Year Warranty',
+    ],
     cta: 'View Campaign',
     ctaHref: '/offers',
     secondaryCta: 'Build PC Now',
@@ -109,12 +114,27 @@ export default function HeroSection() {
       return { cpu: 'Core i3 12100F', gpu: 'GTX 1650 4GB', fps: '~160 FPS', tier: 'Entry 1080p' };
     }
     if (budget < 110000) {
-      return { cpu: 'Ryzen 5 5600', gpu: 'RTX 4060 8GB', fps: '~240 FPS', tier: 'Sweet Spot 1080p' };
+      return {
+        cpu: 'Ryzen 5 5600',
+        gpu: 'RTX 4060 8GB',
+        fps: '~240 FPS',
+        tier: 'Sweet Spot 1080p',
+      };
     }
     if (budget < 170000) {
-      return { cpu: 'Intel i5-13400F', gpu: 'RTX 4070 12GB', fps: '~140 FPS (2K)', tier: 'Ultra 2K Gaming' };
+      return {
+        cpu: 'Intel i5-13400F',
+        gpu: 'RTX 4070 12GB',
+        fps: '~140 FPS (2K)',
+        tier: 'Ultra 2K Gaming',
+      };
     }
-    return { cpu: 'Ryzen 7 7800X3D', gpu: 'RTX 4080 Super', fps: '~200+ FPS (4K)', tier: '4K Beast' };
+    return {
+      cpu: 'Ryzen 7 7800X3D',
+      gpu: 'RTX 4080 Super',
+      fps: '~200+ FPS (4K)',
+      tier: '4K Beast',
+    };
   };
 
   const rec = getBudgetRec(estBudget);
@@ -125,7 +145,8 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,229,160,0.06) 0%, transparent 70%)',
+          background:
+            'radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,229,160,0.06) 0%, transparent 70%)',
         }}
       />
 
@@ -135,14 +156,20 @@ export default function HeroSection() {
           {/* Left Column: Multi-Slide Campaign Carousel Banner */}
           <div className="relative bg-surface/90 border border-border rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-xl min-h-[460px]">
             {/* Slide Content Layout */}
-            <div className={`grid md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_360px] gap-6 items-center transition-all duration-300 ${animating ? 'opacity-0 translate-y-3' : 'opacity-100 translate-y-0'}`}>
+            <div
+              className={`grid md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_360px] gap-6 items-center transition-all duration-300 ${animating ? 'opacity-0 translate-y-3' : 'opacity-100 translate-y-0'}`}
+            >
               {/* Left Side of Carousel: Name, Specs & Details */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3 flex-wrap">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20">
                     <span className="pulse-dot" />
-                    <span className="text-accent text-xs font-semibold font-display uppercase tracking-widest">{slide.eyebrow}</span>
-                    <span className="text-xs text-muted-foreground border-l border-accent/20 pl-2">{slide.badge}</span>
+                    <span className="text-accent text-xs font-semibold font-display uppercase tracking-widest">
+                      {slide.eyebrow}
+                    </span>
+                    <span className="text-xs text-muted-foreground border-l border-accent/20 pl-2">
+                      {slide.badge}
+                    </span>
                   </div>
 
                   <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono text-white font-bold flex items-center gap-1.5 border border-white/10">
@@ -168,7 +195,10 @@ export default function HeroSection() {
                 {/* Key Specs Pills */}
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {slide.specs.map((spec) => (
-                    <span key={spec} className="px-2.5 py-1 rounded-lg bg-elevated border border-border text-[11px] font-semibold text-foreground">
+                    <span
+                      key={spec}
+                      className="px-2.5 py-1 rounded-lg bg-elevated border border-border text-[11px] font-semibold text-foreground"
+                    >
                       {spec}
                     </span>
                   ))}
@@ -176,8 +206,12 @@ export default function HeroSection() {
 
                 {/* Price (Positioned Above Buttons) */}
                 <div className="pt-2">
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-medium">Official Price</span>
-                  <span className="font-display font-extrabold text-2xl sm:text-3xl text-accent tabular-nums">{formatPrice(slide.price)}</span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-medium">
+                    Official Price
+                  </span>
+                  <span className="font-display font-extrabold text-2xl sm:text-3xl text-accent tabular-nums">
+                    {formatPrice(slide.price)}
+                  </span>
                 </div>
 
                 {/* Action Buttons (Positioned Directly Under Price - Full Width on Mobile) */}
@@ -204,7 +238,8 @@ export default function HeroSection() {
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: 'radial-gradient(circle at 50% 50%, rgba(0,229,160,0.18) 0%, transparent 70%)',
+                    background:
+                      'radial-gradient(circle at 50% 50%, rgba(0,229,160,0.18) 0%, transparent 70%)',
                   }}
                 />
 
@@ -230,7 +265,9 @@ export default function HeroSection() {
                     key={s.id}
                     onClick={() => goToSlide(i)}
                     className={`rounded-full transition-all duration-300 min-w-[8px] min-h-[8px] touch-manipulation ${
-                      i === current ? 'w-8 h-2 bg-accent' : 'w-2 h-2 bg-border hover:bg-muted-foreground'
+                      i === current
+                        ? 'w-8 h-2 bg-accent'
+                        : 'w-2 h-2 bg-border hover:bg-muted-foreground'
                     }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
@@ -250,8 +287,12 @@ export default function HeroSection() {
                       <Icon name="CpuIcon" size={16} />
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-sm text-foreground">Quick PC Budget Estimator</h3>
-                      <span className="text-[10px] text-muted-foreground block">Slide to calculate your dream PC</span>
+                      <h3 className="font-display font-bold text-sm text-foreground">
+                        Quick PC Budget Estimator
+                      </h3>
+                      <span className="text-[10px] text-muted-foreground block">
+                        Slide to calculate your dream PC
+                      </span>
                     </div>
                   </div>
                   <span className="text-[10px] bg-accent/20 border border-accent/40 text-accent font-bold px-2 py-0.5 rounded-full">
@@ -317,11 +358,18 @@ export default function HeroSection() {
                     <Icon name="CreditCardIcon" size={16} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-sm text-foreground">0% EMI Preview</h3>
-                    <span className="text-[10px] text-muted-foreground block">3 to 36 Months on 30+ Banks</span>
+                    <h3 className="font-display font-bold text-sm text-foreground">
+                      0% EMI Preview
+                    </h3>
+                    <span className="text-[10px] text-muted-foreground block">
+                      3 to 36 Months on 30+ Banks
+                    </span>
                   </div>
                 </div>
-                <Link href="/emi-calculator" className="text-xs text-accent hover:underline font-semibold">
+                <Link
+                  href="/emi-calculator"
+                  className="text-xs text-accent hover:underline font-semibold"
+                >
                   Calculate →
                 </Link>
               </div>
@@ -346,7 +394,9 @@ export default function HeroSection() {
               {/* Installment breakdown sample */}
               <div className="flex items-center justify-between p-3 bg-elevated rounded-xl border border-border text-xs">
                 <div>
-                  <span className="text-[10px] text-muted-foreground block">Sample 36 Months EMI:</span>
+                  <span className="text-[10px] text-muted-foreground block">
+                    Sample 36 Months EMI:
+                  </span>
                   <span className="font-display font-extrabold text-sm text-foreground tabular-nums">
                     From ৳ 5,138 / month
                   </span>

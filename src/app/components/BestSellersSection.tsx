@@ -23,11 +23,12 @@ export default function BestSellersSection() {
     setTimeout(() => setLoading(false), 600);
   };
 
-  const products = activeTab === 1
-    ? PRODUCTS?.filter((p) => p?.isNew)?.concat(PRODUCTS?.slice(0, 4))
-    : activeTab === 2
-    ? [...PRODUCTS]?.sort((a, b) => b?.rating - a?.rating)?.slice(0, 4)
-    : PRODUCTS?.slice(0, 4);
+  const products =
+    activeTab === 1
+      ? PRODUCTS?.filter((p) => p?.isNew)?.concat(PRODUCTS?.slice(0, 4))
+      : activeTab === 2
+        ? [...PRODUCTS]?.sort((a, b) => b?.rating - a?.rating)?.slice(0, 4)
+        : PRODUCTS?.slice(0, 4);
 
   return (
     <section className="py-10 sm:py-12 border-t border-border">
@@ -49,7 +50,10 @@ export default function BestSellersSection() {
               </button>
             ))}
           </div>
-          <Link href="/category" className="text-sm font-medium text-accent hover:text-accent/80 transition-colors flex items-center gap-1 min-h-[40px] touch-manipulation self-start sm:self-auto">
+          <Link
+            href="/category"
+            className="text-sm font-medium text-accent hover:text-accent/80 transition-colors flex items-center gap-1 min-h-[40px] touch-manipulation self-start sm:self-auto"
+          >
             View All →
           </Link>
         </div>

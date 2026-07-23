@@ -24,14 +24,19 @@ export default function CartCheckoutPage() {
         <div className="border-b border-border">
           <div className="max-w-[1400px] mx-auto px-4 py-4 sm:py-5">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-              <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+              <Link
+                href="/"
+                className="hover:text-foreground transition-colors flex items-center gap-1"
+              >
                 <Icon name="HomeIcon" size={14} />
                 Home
               </Link>
               <Icon name="ChevronRightIcon" size={14} />
               <span className="text-foreground font-medium">Cart & Checkout</span>
             </div>
-            <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">Your Cart</h1>
+            <h1 className="font-display font-bold text-2xl text-foreground tracking-tight">
+              Your Cart
+            </h1>
           </div>
         </div>
         {loading ? <CartSkeleton /> : <CartCheckoutClient />}

@@ -19,7 +19,8 @@ export async function POST(req: Request) {
 
     if (!apiKey || apiKey === 'your-openai-api-key-here') {
       return NextResponse.json({
-        reply: "Hey there! I'm Lumi, senior PC builder here at VoltEdge Dhaka 😊 How's your day going? What kind of build or budget are you thinking about today?",
+        reply:
+          "Hey there! I'm Lumi, senior PC builder here at VoltEdge Dhaka 😊 How's your day going? What kind of build or budget are you thinking about today?",
       });
     }
 
@@ -60,7 +61,8 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Lumi Route error:', error);
     return NextResponse.json({
-      reply: "Hey! I'm Lumi from VoltEdge. Don't worry at all if you're new to PC building — I'm right here to help you pick the best value parts for your budget! What budget do you have in mind?",
+      reply:
+        "Hey! I'm Lumi from VoltEdge. Don't worry at all if you're new to PC building — I'm right here to help you pick the best value parts for your budget! What budget do you have in mind?",
     });
   }
 }
@@ -68,11 +70,23 @@ export async function POST(req: Request) {
 function getHumanFallbackReply(userText: string): string {
   const text = userText.toLowerCase();
 
-  if (text.includes('who') || text.includes('human') || text.includes('real') || text.includes('ai') || text.includes('bot')) {
+  if (
+    text.includes('who') ||
+    text.includes('human') ||
+    text.includes('real') ||
+    text.includes('ai') ||
+    text.includes('bot')
+  ) {
     return "Haha, I'm Lumi! I'm one of the senior hardware consultants here at VoltEdge in Dhaka. I spend most of my days testing new GPUs, building custom rigs for gamers, and helping people get the absolute best PC for their hard-earned money! How can I help you with your build today?";
   }
 
-  if (text.includes('why') || text.includes('best') || text.includes('startech') || text.includes('techland') || text.includes('trust')) {
+  if (
+    text.includes('why') ||
+    text.includes('best') ||
+    text.includes('startech') ||
+    text.includes('techland') ||
+    text.includes('trust')
+  ) {
     return "Honestly, the main reason gamers and professionals choose VoltEdge over other shops in Bangladesh is that we treat your build like our own! Other places charge extra for cable management or testing, but our certified engineers assemble, stress-test, and cable-route your PC for 100% FREE. Plus we match the lowest BDT market prices, provide 100% official BD warranties, and offer 0% EMI up to 36 months. You're in super safe hands with us!";
   }
 

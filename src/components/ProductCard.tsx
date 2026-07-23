@@ -14,7 +14,11 @@ interface ProductCardProps {
   priority?: boolean;
 }
 
-export default function ProductCard({ product, className = '', priority = false }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className = '',
+  priority = false,
+}: ProductCardProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [wishlisted, setWishlisted] = useState(false);
@@ -48,7 +52,10 @@ export default function ProductCard({ product, className = '', priority = false 
   };
 
   return (
-    <Link href="/product-detail" className={`group block bg-card border border-border rounded-2xl overflow-hidden card-hover relative ${className}`}>
+    <Link
+      href="/product-detail"
+      className={`group block bg-card border border-border rounded-2xl overflow-hidden card-hover relative ${className}`}
+    >
       {/* Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold flex items-center gap-1">
@@ -80,10 +87,17 @@ export default function ProductCard({ product, className = '', priority = false 
           className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors shadow-md"
           aria-label="Add to wishlist"
         >
-          <Icon name="HeartIcon" size={16} className={wishlisted ? 'text-danger fill-danger' : ''} />
+          <Icon
+            name="HeartIcon"
+            size={16}
+            className={wishlisted ? 'text-danger fill-danger' : ''}
+          />
         </button>
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-accent transition-colors shadow-md"
           title="Quick View"
         >
@@ -106,23 +120,40 @@ export default function ProductCard({ product, className = '', priority = false 
       {/* Content */}
       <div className="p-3 sm:p-4">
         <div className="flex items-center justify-between gap-1 mb-1">
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{product.brand}</p>
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted/80 text-muted-foreground font-medium">3 Yrs Warranty</span>
+          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+            {product.brand}
+          </p>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted/80 text-muted-foreground font-medium">
+            3 Yrs Warranty
+          </span>
         </div>
-        <h3 className="font-display font-semibold text-sm text-foreground line-clamp-2 mb-2 leading-snug">{product.name}</h3>
+        <h3 className="font-display font-semibold text-sm text-foreground line-clamp-2 mb-2 leading-snug">
+          {product.name}
+        </h3>
 
         {/* Spec chips */}
         <div className="flex flex-wrap gap-1 mb-2">
           {product.specs.slice(0, 2).map((spec) => (
-            <span key={spec} className="px-1.5 py-0.5 rounded-md bg-elevated border border-border text-xs text-muted-foreground">{spec}</span>
+            <span
+              key={spec}
+              className="px-1.5 py-0.5 rounded-md bg-elevated border border-border text-xs text-muted-foreground"
+            >
+              {spec}
+            </span>
           ))}
         </div>
 
         {/* Rating */}
         <div className="flex items-center gap-1.5 mb-2">
           <div className="flex">
-            {[1,2,3,4,5].map((star) => (
-              <Icon key={star} name="StarIcon" size={12} className={star <= Math.round(product.rating) ? 'text-warning' : 'text-border'} variant="solid" />
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Icon
+                key={star}
+                name="StarIcon"
+                size={12}
+                className={star <= Math.round(product.rating) ? 'text-warning' : 'text-border'}
+                variant="solid"
+              />
             ))}
           </div>
           <span className="text-xs text-muted-foreground">({product.reviews})</span>
@@ -130,9 +161,13 @@ export default function ProductCard({ product, className = '', priority = false 
 
         {/* Price */}
         <div className="flex items-baseline gap-2 mb-1">
-          <span className="font-display font-bold text-base sm:text-lg text-accent tabular-nums">{formatPrice(product.price)}</span>
+          <span className="font-display font-bold text-base sm:text-lg text-accent tabular-nums">
+            {formatPrice(product.price)}
+          </span>
           {product.oldPrice && (
-            <span className="text-xs text-muted-foreground line-through tabular-nums">{formatPrice(product.oldPrice)}</span>
+            <span className="text-xs text-muted-foreground line-through tabular-nums">
+              {formatPrice(product.oldPrice)}
+            </span>
           )}
         </div>
         {product.emi && (
@@ -145,7 +180,8 @@ export default function ProductCard({ product, className = '', priority = false 
             onClick={handleAddToCart}
             className={`w-full h-9 rounded-xl text-[10px] sm:text-xs font-semibold font-display transition-all flex items-center justify-center text-center px-1 leading-none ${
               addedToCart
-                ? 'bg-accent/20 text-accent border border-accent/40' :'bg-elevated border border-border text-foreground hover:bg-elevated/80'
+                ? 'bg-accent/20 text-accent border border-accent/40'
+                : 'bg-elevated border border-border text-foreground hover:bg-elevated/80'
             }`}
           >
             <span className="truncate">{addedToCart ? '✓ Added' : 'Add to Cart'}</span>
