@@ -7,6 +7,7 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { Product, formatPrice, formatEmi } from '@/lib/mockData';
 import { useToast } from '@/context/ToastContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 
 interface ProductCardProps {
   product: Product;
@@ -21,18 +22,19 @@ export default function ProductCard({
 }: ProductCardProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const [wishlisted, setWishlisted] = useState(false);
+  const { isInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const wishlisted = isInWishlist(product.id);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const handleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const next = !wishlisted;
-    setWishlisted(next);
-    if (next) {
-      toast.success(`Added "${product.name}" to your wishlist! ❤️`);
-    } else {
+    if (wishlisted) {
+      removeFromWishlist(product.id);
       toast.info(`Removed "${product.name}" from wishlist.`);
+    } else {
+      addToWishlist(product);
+      toast.success(`Added "${product.name}" to your wishlist! ❤️`);
     }
   };
 
@@ -53,7 +55,7 @@ export default function ProductCard({
 
   return (
     <Link
-      href="/product-detail"
+      href={`/product/${product.id}`}
       className={`group block bg-card border border-border rounded-2xl overflow-hidden card-hover relative ${className}`}
     >
       {/* Badges */}
@@ -84,7 +86,7 @@ export default function ProductCard({
       <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
         <button
           onClick={handleWishlist}
-          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors shadow-md"
+          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-danger transition-colors shadow-md touch-manipulation"
           aria-label="Add to wishlist"
         >
           <Icon
@@ -98,7 +100,7 @@ export default function ProductCard({
             e.preventDefault();
             e.stopPropagation();
           }}
-          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-accent transition-colors shadow-md"
+          className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-lg bg-elevated/90 backdrop-blur-sm border border-border text-muted-foreground hover:text-accent transition-colors shadow-md touch-manipulation"
           title="Quick View"
         >
           <Icon name="EyeIcon" size={16} />
@@ -109,7 +111,7 @@ export default function ProductCard({
       <div className="relative bg-elevated aspect-[4/3] overflow-hidden">
         <AppImage
           src={product.image}
-          alt={product.alt}
+          alt={product.alt || product.name}
           fill
           priority={priority}
           sizes="(max-width: 480px) 50vw, (max-width: 768px) 45vw, (max-width: 1024px) 33vw, 25vw"

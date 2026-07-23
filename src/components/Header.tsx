@@ -7,6 +7,8 @@ import Icon from '@/components/ui/AppIcon';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/context/ToastContext';
+import { useWishlist } from '@/contexts/WishlistContext';
+import { useCart } from '@/contexts/CartContext';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -56,13 +58,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [cartCount] = useState(2);
+  const { cartCount } = useCart();
   const [expandedCategory, setExpandedCategory] = useState<string | null>('PC and Server');
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, signOut, loading } = useAuth();
   const { toast } = useToast();
+  const { wishlistCount } = useWishlist();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -395,9 +398,11 @@ export default function Header() {
               aria-label="Wishlist"
             >
               <Icon name="HeartIcon" size={20} />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-danger text-white text-xs font-bold rounded-full flex items-center justify-center font-display shadow-sm">
-                3
-              </span>
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-danger text-white text-xs font-bold rounded-full flex items-center justify-center font-display shadow-sm animate-scale-up">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
 
             <Link

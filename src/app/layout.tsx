@@ -5,6 +5,8 @@ import '../styles/tailwind.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { ToastProvider } from '@/context/ToastContext';
+import { WishlistProvider } from '@/contexts/WishlistContext';
+import { CartProvider } from '@/contexts/CartContext';
 import AIChatBot from '@/components/AIChatBot';
 
 const spaceGrotesk = Space_Grotesk({
@@ -53,8 +55,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           <AuthProvider>
             <ToastProvider>
-              {children}
-              <AIChatBot />
+              <WishlistProvider>
+                <CartProvider>
+                  {children}
+                  <AIChatBot />
+                </CartProvider>
+              </WishlistProvider>
             </ToastProvider>
           </AuthProvider>
         </ThemeProvider>

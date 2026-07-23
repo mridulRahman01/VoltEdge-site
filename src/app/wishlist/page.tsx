@@ -7,33 +7,27 @@ import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
-import { PRODUCTS, formatPrice, formatEmi } from '@/lib/mockData';
+import { PRODUCTS, formatPrice, formatEmi, Product } from '@/lib/mockData';
 import { useToast } from '@/context/ToastContext';
-
-// Initial wishlisted items mock
-const INITIAL_WISHLIST = [
-  PRODUCTS[0], // ASUS ROG Strix G16
-  PRODUCTS[1], // MSI RTX 4070
-  PRODUCTS[3], // Samsung Odyssey G7
-];
+import { useWishlist } from '@/contexts/WishlistContext';
 
 export default function WishlistPage() {
   const { toast } = useToast();
-  const [wishlist, setWishlist] = useState(INITIAL_WISHLIST);
+  const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleRemove = (id: string, name: string) => {
-    setWishlist((prev) => prev.filter((item) => item.id !== id));
+    removeFromWishlist(id);
     toast.info(`Removed "${name}" from wishlist.`);
   };
 
-  const handleClearAll = () => {
-    if (confirm('Are you sure you want to clear your entire wishlist?')) {
-      setWishlist([]);
-      toast.warning('Your wishlist has been cleared.');
-    }
+  const handleConfirmClearAll = () => {
+    clearWishlist();
+    setShowConfirmModal(false);
+    toast.warning('Your wishlist has been cleared.');
   };
 
-  const handleAddToCart = (item: (typeof PRODUCTS)[0]) => {
+  const handleAddToCart = (item: Product) => {
     toast.success(`Moved "${item.name}" to cart successfully! 🛒`);
   };
 
@@ -68,8 +62,8 @@ export default function WishlistPage() {
 
           {wishlist.length > 0 && (
             <button
-              onClick={handleClearAll}
-              className="px-4 py-2.5 rounded-xl bg-danger/10 border border-danger/30 text-danger font-display font-semibold text-xs flex items-center gap-1.5 hover:bg-danger/20 transition-all self-start sm:self-auto"
+              onClick={() => setShowConfirmModal(true)}
+              className="px-4 py-2.5 rounded-xl bg-danger/10 border border-danger/30 text-danger font-display font-semibold text-xs flex items-center gap-1.5 hover:bg-danger/20 transition-all self-start sm:self-auto touch-manipulation"
             >
               <Icon name="Trash2Icon" size={14} />
               Clear Wishlist
@@ -88,7 +82,7 @@ export default function WishlistPage() {
                 {/* Remove Heart Button */}
                 <button
                   onClick={() => handleRemove(product.id, product.name)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-elevated/80 border border-border text-danger hover:bg-danger/20 transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-elevated/80 border border-border text-danger hover:bg-danger/20 transition-colors z-10 touch-manipulation"
                   title="Remove from Wishlist"
                   aria-label={`Remove ${product.name} from wishlist`}
                 >
@@ -100,7 +94,7 @@ export default function WishlistPage() {
                   <div className="w-full h-48 rounded-2xl overflow-hidden bg-elevated mb-4 relative">
                     <AppImage
                       src={product.image}
-                      alt={product.alt}
+                      alt={product.alt || product.name}
                       width={300}
                       height={200}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
@@ -114,7 +108,7 @@ export default function WishlistPage() {
                     {product.brand}
                   </span>
                   <Link
-                    href="/product-detail"
+                    href={`/product/${product.id}`}
                     className="font-display font-bold text-base text-foreground line-clamp-2 hover:text-accent transition-colors mb-2"
                   >
                     {product.name}
@@ -137,14 +131,14 @@ export default function WishlistPage() {
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="w-full h-10 rounded-xl bg-accent text-accent-foreground font-display font-semibold text-xs flex items-center justify-center gap-1.5 hover:glow-accent-sm transition-all"
+                    className="w-full h-10 rounded-xl bg-accent text-accent-foreground font-display font-semibold text-xs flex items-center justify-center gap-1.5 hover:glow-accent-sm transition-all touch-manipulation"
                   >
                     <Icon name="ShoppingCartIcon" size={14} />
                     Move to Cart
                   </button>
                   <Link
-                    href="/product-detail"
-                    className="w-full h-10 rounded-xl bg-elevated border border-border text-foreground font-display font-semibold text-xs flex items-center justify-center hover:border-accent/40 transition-all text-center leading-none"
+                    href={`/product/${product.id}`}
+                    className="w-full h-10 rounded-xl bg-elevated border border-border text-foreground font-display font-semibold text-xs flex items-center justify-center hover:border-accent/40 transition-all text-center leading-none flex items-center justify-center"
                   >
                     View Details
                   </Link>
@@ -175,6 +169,61 @@ export default function WishlistPage() {
           </div>
         )}
       </main>
+
+      {/* Interactive Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+          <div
+            className="bg-surface border border-danger/40 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6 relative animate-scale-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowConfirmModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors"
+              aria-label="Close modal"
+            >
+              <Icon name="XIcon" size={18} />
+            </button>
+
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-danger/10 border border-danger/30 flex items-center justify-center text-danger shrink-0">
+                <Icon name="AlertTriangleIcon" size={24} />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-xl text-foreground">
+                  Clear Entire Wishlist?
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Are you sure you want to remove all {wishlist.length} saved item
+                  {wishlist.length !== 1 ? 's' : ''} from your wishlist?
+                </p>
+              </div>
+            </div>
+
+            <div className="p-3 bg-elevated border border-border rounded-xl text-xs text-muted-foreground flex items-center gap-2">
+              <Icon name="InfoIcon" size={16} className="text-amber-400 shrink-0" />
+              <span>This action cannot be undone. You will need to re-add items manually.</span>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="flex-1 py-3 rounded-xl bg-elevated border border-border text-foreground font-display font-semibold text-xs hover:bg-surface transition-all touch-manipulation min-h-[44px]"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmClearAll}
+                className="flex-1 py-3 rounded-xl bg-danger text-white font-display font-semibold text-xs hover:bg-danger/90 transition-all shadow-md touch-manipulation min-h-[44px] flex items-center justify-center gap-1.5"
+              >
+                <Icon name="Trash2Icon" size={14} />
+                Yes, Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
       <MobileBottomNav />
     </div>
