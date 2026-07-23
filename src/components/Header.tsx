@@ -179,7 +179,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0 touch-manipulation">
             <AppLogo size={28} />
-            <span className="font-display font-bold text-base sm:text-lg tracking-tight text-foreground hidden sm:block">
+            <span className="font-display font-bold text-base sm:text-lg tracking-tight text-foreground block">
               VoltEdge
             </span>
           </Link>
@@ -315,81 +315,84 @@ export default function Header() {
               </kbd>
             </button>
 
-            {/* Theme Switcher */}
-            <ThemeSwitcher />
+            {/* Theme Switcher & User menu (Desktop only) */}
+            <div className="hidden lg:flex items-center gap-1">
+              <ThemeSwitcher />
 
-            {/* User menu */}
-            <div className="relative" ref={userMenuRef}>
-              {loading ? (
-                <div className="w-9 h-9 rounded-xl bg-elevated animate-pulse" />
-              ) : user ? (
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 p-2 min-w-[44px] min-h-[44px] rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors touch-manipulation"
-                  aria-label="User menu"
-                  aria-expanded={userMenuOpen}
-                >
-                  <div className="w-6 h-6 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center">
-                    <span className="text-xs font-bold text-accent">
-                      {user.user_metadata?.full_name?.[0] || user.email?.[0]?.toUpperCase() || 'U'}
-                    </span>
-                  </div>
-                </button>
-              ) : (
-                <Link
-                  href="/sign-up-login"
-                  className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors touch-manipulation"
-                  aria-label="Account"
-                >
-                  <Icon name="UserIcon" size={20} />
-                </Link>
-              )}
+              <div className="relative" ref={userMenuRef}>
+                {loading ? (
+                  <div className="w-9 h-9 rounded-xl bg-elevated animate-pulse" />
+                ) : user ? (
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center gap-2 p-2 min-w-[44px] min-h-[44px] rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors touch-manipulation"
+                    aria-label="User menu"
+                    aria-expanded={userMenuOpen}
+                  >
+                    <div className="w-6 h-6 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center">
+                      <span className="text-xs font-bold text-accent">
+                        {user.user_metadata?.full_name?.[0] ||
+                          user.email?.[0]?.toUpperCase() ||
+                          'U'}
+                      </span>
+                    </div>
+                  </button>
+                ) : (
+                  <Link
+                    href="/sign-up-login"
+                    className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors touch-manipulation"
+                    aria-label="Account"
+                  >
+                    <Icon name="UserIcon" size={20} />
+                  </Link>
+                )}
 
-              {userMenuOpen && user && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden z-50 animate-fade-up">
-                  <div className="px-4 py-3 border-b border-border">
-                    <p className="text-sm font-semibold text-foreground truncate">
-                      {user.user_metadata?.full_name || 'My Account'}
-                    </p>
-                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
-                  </div>
-                  <div className="py-1">
-                    <Link
-                      href="/"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
-                    >
-                      <Icon name="UserIcon" size={16} className="text-muted-foreground" />
-                      My Profile
-                    </Link>
-                    <Link
-                      href="/"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
-                    >
-                      <Icon name="PackageIcon" size={16} className="text-muted-foreground" />
-                      My Orders
-                    </Link>
-                    <Link
-                      href="/"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
-                    >
-                      <Icon name="HeartIcon" size={16} className="text-muted-foreground" />
-                      Wishlist
-                    </Link>
-                    <div className="border-t border-border mt-1 pt-1">
-                      <button
-                        onClick={handleSignOut}
-                        className="w-full flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-danger hover:bg-elevated transition-colors touch-manipulation"
+                {userMenuOpen && user && (
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden z-50 animate-fade-up">
+                    <div className="px-4 py-3 border-b border-border">
+                      <p className="text-sm font-semibold text-foreground truncate">
+                        {user.user_metadata?.full_name || 'My Account'}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                    </div>
+                    <div className="py-1">
+                      <Link
+                        href="/"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
                       >
-                        <Icon name="LogOutIcon" size={16} className="text-danger" />
-                        Sign Out
-                      </button>
+                        <Icon name="UserIcon" size={16} className="text-muted-foreground" />
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
+                      >
+                        <Icon name="PackageIcon" size={16} className="text-muted-foreground" />
+                        My Orders
+                      </Link>
+                      <Link
+                        href="/"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-foreground hover:bg-elevated transition-colors touch-manipulation"
+                      >
+                        <Icon name="HeartIcon" size={16} className="text-muted-foreground" />
+                        Wishlist
+                      </Link>
+                      <div className="border-t border-border mt-1 pt-1">
+                        <button
+                          onClick={handleSignOut}
+                          className="w-full flex items-center gap-3 px-4 py-3 min-h-[48px] text-sm text-danger hover:bg-elevated transition-colors touch-manipulation"
+                        >
+                          <Icon name="LogOutIcon" size={16} className="text-danger" />
+                          Sign Out
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             <Link

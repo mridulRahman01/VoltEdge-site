@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
+import MobileUtilityStrip from '@/app/components/MobileUtilityStrip';
 import HeroSection from '@/app/components/HeroSection';
 import CategoryRail from '@/app/components/CategoryRail';
 import FlashSaleStrip from '@/app/components/FlashSaleStrip';
@@ -15,7 +16,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-14 sm:pt-16 pb-24 lg:pb-0">
+      <MobileUtilityStrip />
+      <main className="pb-[calc(84px+env(safe-area-inset-bottom))] lg:pb-0 space-y-4 sm:space-y-8">
         <HeroSection />
         <CategoryRail />
         <FlashSaleStrip />

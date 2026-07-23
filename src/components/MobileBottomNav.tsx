@@ -17,22 +17,25 @@ export default function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="lg:hidden fixed bottom-3 left-3 right-3 z-40" aria-label="Mobile navigation">
-      <div className="bg-surface/95 backdrop-blur-md border border-border rounded-full shadow-2xl px-1 py-1.5 flex items-center justify-around">
+    <nav
+      className="lg:hidden fixed bottom-3 left-3 right-3 z-40 pb-[env(safe-area-inset-bottom)]"
+      aria-label="Mobile navigation"
+    >
+      <div className="bg-surface/90 backdrop-blur-lg border border-border rounded-full shadow-2xl px-1.5 py-1.5 flex items-center justify-around">
         {NAV_ITEMS.map((item) => {
           const isActive = item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
           return (
             <Link
               key={item.label}
               href={item.href}
-              className={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[48px] px-2 py-1.5 rounded-full transition-all relative touch-manipulation ${
+              className={`flex flex-col items-center justify-center gap-0.5 min-w-[52px] min-h-[44px] px-2 py-1 rounded-full transition-all relative touch-manipulation ${
                 isActive ? 'bg-accent/10' : 'active:bg-elevated'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
               <Icon
                 name={item.icon as 'HomeIcon'}
-                size={22}
+                size={20}
                 className={isActive ? 'text-accent' : 'text-muted-foreground'}
               />
               <span
